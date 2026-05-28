@@ -1,0 +1,19 @@
+# MacOS
+.DS_Store
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# IDE / Editor
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Windows
+Thumbs.db
+Desktop.ini

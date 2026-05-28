@@ -1,0 +1,342 @@
+.concept-card, .example-card {
+    padding: 15px !important;
+}
+
+.grid-2, .grid-3 {
+    gap: 15px !important;
+}
+
+.concept-card p,
+.flow-box .flow-text,
+.example-item .text,
+.example-side p,
+.symbol-pill,
+.case-desc,
+.case-criterion p,
+.case-vacuous p,
+.guide-card li,
+.formal-tip,
+.case-note,
+.note-bar,
+.guide-highlight {
+    font-size: 20px;
+    line-height: 1.35;
+}
+
+.cover-content {
+    text-align: center;
+}
+
+.cover-content h1 {
+    font-size: 72px !important;
+    font-weight: 900;
+    margin: 20px 0;
+    text-shadow: 0 0 20px rgba(0, 168, 232, 0.3);
+}
+
+.accent {
+    color: var(--ucv-accent);
+}
+
+.cover-university {
+    letter-spacing: 5px;
+    color: var(--ucv-accent);
+    margin-bottom: 15px;
+    font-size: 28px !important;
+    text-transform: uppercase;
+}
+
+.cover-subtitle {
+    font-size: 35px;
+    opacity: 0.8;
+    margin-top: 20px;
+}
+
+.cover-author {
+    font-size: 28px;
+    opacity: 0.9;
+    margin-top: 28px;
+}
+
+.cover-date {
+    font-size: 22px;
+    opacity: 0.7;
+    margin-top: 8px;
+}
+
+.case-def {
+    margin-top: 12px;
+    padding: 12px 14px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 12px;
+    color: var(--text-dim);
+}
+
+.formal-table {
+    margin-top: 20px;
+    font-size: 19px;
+}
+
+.formal-table th,
+.logic-table th {
+    padding: 10px 15px;
+}
+
+.formal-table td,
+.logic-table td {
+    padding: 6px 15px;
+}
+
+.formal-table th {
+    font-size: 17px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.formal-table td:first-child {
+    width: 80px;
+    text-align: center;
+    color: var(--ucv-accent);
+    font-weight: 700;
+}
+
+.formal-table td:nth-child(2) {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.formal-table.two-cols td:first-child {
+    width: auto;
+    text-align: left;
+    color: var(--text-main);
+}
+
+.formal-table td:last-child {
+    font-style: italic;
+    color: var(--text-dim);
+}
+
+.logic-symbol {
+    color: var(--ucv-accent);
+    font-weight: 700;
+}
+
+.slide-counter {
+    position: absolute;
+    bottom: 30px;
+    right: 40px;
+    font-size: 16px;
+    color: var(--text-dim);
+    font-weight: 700;
+    opacity: 0.5;
+    letter-spacing: 2px;
+}
+
+.slide {
+    position: relative;
+    padding: 30px 45px 35px !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    #slides-root,
+    .slide-title,
+    h1,
+    .formula,
+    .validity-visual,
+    .case-def,
+    .logic-row,
+    .formal-table tbody tr,
+    .logic-table tbody tr {
+        transform: none !important;
+    }
+}
+
+.logic-table td, .logic-table th {
+    padding: 4px 10px !important;
+}
+
+.validity-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    margin: 15px auto;
+    max-width: 600px;
+}
+
+.logic-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    font-family: 'Cambria', 'STIX General', serif;
+    min-height: 45px;
+}
+
+.premise-tag {
+    font-weight: 700;
+    color: var(--ucv-accent);
+    width: 35px;
+    font-size: 16px;
+    opacity: 0.5;
+    font-family: var(--font-main);
+}
+
+.logic-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding: 0 4px;
+}
+
+.logic-cell .sym {
+    font-size: 26px;
+    color: var(--text-main);
+}
+
+.logic-cell .val {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--ucv-accent);
+    margin-top: -2px;
+    background: rgba(200, 240, 122, 0.1);
+    padding: 0 4px;
+    border-radius: 4px;
+}
+
+.logic-row .op {
+    font-size: 22px;
+    color: var(--text-dim);
+}
+
+.logic-row .paren {
+    font-size: 30px;
+    color: var(--text-dim);
+    opacity: 0.3;
+}
+
+.logic-row.is-conclusion {
+    margin-top: 10px;
+    padding-top: 15px;
+    border-top: 2px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+    justify-content: center;
+}
+
+.logic-row.is-conclusion .sym {
+    color: var(--ucv-accent);
+}
+
+.validity-visual,
+.logic-row,
+.case-def,
+.formal-table tbody tr,
+.logic-table tbody tr {
+    transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 0.2s ease;
+    cursor: default;
+}
+
+.validity-visual:hover,
+.case-def:hover {
+    transform: scale(1.025);
+    background-color: rgba(255, 255, 255, 0.05);
+    z-index: 10;
+}
+
+.logic-row:hover,
+.formal-table tbody tr:hover,
+.logic-table tbody tr:hover {
+    transform: scale(1.015);
+    background-color: rgba(200, 240, 122, 0.05);
+    border-radius: 8px;
+    z-index: 10;
+}
+
+.logic-cell, .logic-row .op, .logic-symbol, [title] {
+    transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), color 0.2s ease;
+}
+
+[title] {
+    position: relative;
+    cursor: help;
+    display: inline-block;
+    transition: all 0.2s ease;
+}
+
+[title]:hover {
+    color: var(--ucv-accent);
+    transform: scale(1.1);
+    z-index: 1000 !important;
+}
+
+[title]:after {
+    display: none !important;
+}
+
+[title]:hover:after {
+    display: none !important;
+}
+
+[title]:before {
+    display: none !important;
+}
+
+[title]:hover:before {
+    display: none !important;
+}
+
+[title]:has([title]:hover):after,
+[title]:has([title]:hover):before {
+    opacity: 0 !important;
+    transform: translateX(-50%) scale(0) !important;
+    transition: none !important;
+}
+
+/* ==========================================================================
+   TIPOGRAFÍA UNIFICADA (720p Optimized)
+   ========================================================================== */
+
+.content {
+    justify-content: flex-start !important;
+    padding-top: 10px !important;
+}
+
+.slide-title, h1 {
+    font-size: 38px !important;
+    line-height: 1.0 !important;
+    margin-bottom: 10px !important;
+}
+
+h3, .concept-tag {
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    margin-bottom: 6px !important;
+}
+
+p, .text, .case-intro, .flow-text, .example-side p, .guide-card li {
+    font-size: 20px !important;
+    line-height: 1.35 !important;
+    color: var(--text-main) !important;
+    opacity: 0.95 !important;
+}
+
+.formal-code, .formal-table, .logic-table, .logic-row, .validity-visual {
+    font-size: 18px !important;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+}
+
+.slide-counter, .premise-tag, .cover-date, [title]:after {
+    font-size: 15px !important;
+}
