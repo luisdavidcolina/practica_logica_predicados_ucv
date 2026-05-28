@@ -1,0 +1,1 @@
+# practica_logica_predicados_ucv
