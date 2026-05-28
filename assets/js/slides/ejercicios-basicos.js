@@ -1,6 +1,5 @@
 export const metodologiaSlide = String.raw`
-<div class="slide" id="slide-metodologia">
-    <span class="section-tag">Sección 3 · Práctica</span>
+<div class="slide">
     <h2 class="slide-title">Metodología para <span>Resolver Ejercicios</span></h2>
     <div class="content">
         <div class="flow-row" style="grid-template-columns: 1fr 0.3fr 1fr 0.3fr 1fr 0.3fr 1fr; margin-bottom:14px;">
@@ -59,7 +58,6 @@ export const metodologiaSlide = String.raw`
 
 export const ejVV1Slide = String.raw`
 <div class="slide">
-    <span class="section-tag">Sección 3 · Práctica</span>
     <h2 class="slide-title">Ejercicio 1: <span>Valor de Verdad</span> — Práctica 2, Ej. 2c</h2>
     <div class="content">
         <div class="case-intro">
@@ -101,7 +99,6 @@ export const ejVV1Slide = String.raw`
 
 export const ejVV2Slide = String.raw`
 <div class="slide">
-    <span class="section-tag">Sección 3 · Práctica</span>
     <h2 class="slide-title">Ejercicio 2: <span>Valor de Verdad</span> — Parcial 2, Ej. 2</h2>
     <div class="content">
         <div class="case-intro">
@@ -147,7 +144,6 @@ export const ejVV2Slide = String.raw`
 
 export const ejAlcanceSlide = String.raw`
 <div class="slide">
-    <span class="section-tag">Sección 3 · Práctica</span>
     <h2 class="slide-title">Ejercicio 3: <span>Alcance</span> — Práctica 2, Ej. 3e</h2>
     <div class="content">
         <div class="case-intro">

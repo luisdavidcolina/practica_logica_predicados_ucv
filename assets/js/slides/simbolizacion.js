@@ -1,6 +1,5 @@
 export const universoFinitoSlide = String.raw`
-<div class="slide" id="slide-universo-finito">
-    <span class="section-tag">Sección 2 · Herramientas</span>
+<div class="slide">
     <h2 class="slide-title">Universo Finito y <span>Equivalencia Proposicional</span></h2>
     <div class="content">
         <div class="note-bar" style="margin-bottom:14px;">
@@ -56,7 +55,6 @@ export const universoFinitoSlide = String.raw`
 
 export const formasCanonicalSlide = String.raw`
 <div class="slide">
-    <span class="section-tag">Sección 2 · Herramientas</span>
     <h2 class="slide-title">Las <span>4 Formas Canónicas</span> de Simbolización</h2>
     <div class="content">
         <div class="note-bar" style="margin-bottom:14px;">
@@ -109,7 +107,6 @@ export const formasCanonicalSlide = String.raw`
 
 export const guiaSimbolizacionSlide = String.raw`
 <div class="slide">
-    <span class="section-tag">Sección 2 · Herramientas</span>
     <h2 class="slide-title">Guía para <span>Simbolizar Argumentos</span></h2>
     <div class="content">
         <div class="guide-grid" style="margin-bottom:12px;">

@@ -1,6 +1,5 @@
 export const equivalenciasSlide = String.raw`
 <div class="slide">
-    <span class="section-tag">Sección 2 · Herramientas</span>
     <h2 class="slide-title">Equivalencias Lógicas con <span>Cuantificadores</span></h2>
     <div class="content">
         <table class="formal-table" style="margin-top:0;">
@@ -30,7 +29,6 @@ export const equivalenciasSlide = String.raw`
 
 export const implicacionesSlide = String.raw`
 <div class="slide">
-    <span class="section-tag">Sección 2 · Herramientas</span>
     <h2 class="slide-title">Implicaciones Lógicas con <span>Cuantificadores</span></h2>
     <div class="content">
         <div class="note-bar" style="margin-bottom:12px;">
@@ -68,7 +66,6 @@ export const implicacionesSlide = String.raw`
 
 export const reglasInferenciaSlide = String.raw`
 <div class="slide">
-    <span class="section-tag">Sección 2 · Herramientas</span>
     <h2 class="slide-title">Reglas de Inferencia con <span>Cuantificadores</span></h2>
     <div class="content">
         <div class="concept-grid" style="grid-template-columns:repeat(4,1fr); margin-bottom:12px;">
@@ -115,6 +112,109 @@ export const reglasInferenciaSlide = String.raw`
                 </div>
                 <p class="case-desc" style="font-size:17px;">
                     Solo se puede aplicar GU a $P(x)$ si $x$ es <strong>completamente arbitraria</strong>: no se obtuvo por PE de ninguna premisa, y no aparece libre en ninguna premisa.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>`;
+
+export const particularizacionDetalleSlide = String.raw`
+<div class="slide">
+    <h2 class="slide-title">PU y PE: <span>Cómo y Cuándo</span> Aplicarlas</h2>
+    <div class="content">
+        <div class="guide-grid" style="grid-template-columns:1fr 1fr; margin-bottom:12px;">
+            <div class="guide-card">
+                <h3>PU — Particularización Universal</h3>
+                <p style="color:var(--ucv-accent); font-size:15px; text-align:center; margin:4px 0 8px;">$\forall x:P(x)\ \therefore\ P(a),\quad a\in\mathbb{U}$</p>
+                <ul>
+                    <li>La premisa dice algo de <em>todos</em>; tomamos un miembro cualquiera</li>
+                    <li>La constante $a$ puede ser <strong>cualquiera ya presente</strong> en la prueba</li>
+                    <li>Se puede aplicar <strong>varias veces</strong> con distintas constantes</li>
+                    <li>Incluso se puede aplicar con la misma constante en varios $\forall$</li>
+                    <li>⚠ Aplicar <em>después</em> de PE para reutilizar las constantes ya nombradas</li>
+                </ul>
+            </div>
+            <div class="guide-card">
+                <h3>PE — Particularización Existencial</h3>
+                <p style="color:var(--ucv-accent); font-size:15px; text-align:center; margin:4px 0 8px;">$\exists x:P(x)\ \therefore\ P(a),\quad a\ \mathbf{nueva}$</p>
+                <ul>
+                    <li>La premisa garantiza que <em>existe</em> alguien; le damos un nombre propio</li>
+                    <li>La constante <strong>debe ser nueva</strong>: no aparecer en ninguna línea anterior</li>
+                    <li>Cada $\exists$ usa su propia constante distinta ($a$, $b$, $c$, …)</li>
+                    <li>No importa quién sea ese elemento: la prueba vale para él</li>
+                    <li>⚠ <strong>SIEMPRE antes</strong> de PU — regla de oro sin excepciones</li>
+                </ul>
+            </div>
+        </div>
+        <div class="example-panel" style="grid-template-columns:1.6fr 1fr; margin-top:0;">
+            <div class="example-card">
+                <h3>¿Por qué el orden PE → PU es obligatorio?</h3>
+                <p style="font-size:14px; margin-bottom:6px;">Premisas: $\exists x:H(x)$, $\forall x:[H(x)\to M(x)]$ — Conclusión: $\exists x:M(x)$</p>
+                <div class="example-item">
+                    <span class="step">✓ Correcto</span>
+                    <span class="text">PE: $\exists x:H(x)\ \therefore\ H(a)$, $a$ nueva. PU con $a$: $H(a)\to M(a)$. MP: $M(a)$. GE: $\exists x:M(x)$</span>
+                </div>
+                <div class="example-item" style="border-left-color:#ff9a9a;">
+                    <span class="step" style="background:rgba(255,154,154,0.15); color:#ff9a9a;">✗ Error</span>
+                    <span class="text">PU primero con $b$ inventado: $H(b)\to M(b)$. Luego PE: $H(a)$, $a\neq b$. Ahora no hay $H(b)$ para hacer MP — la prueba queda <strong>bloqueada</strong>.</span>
+                </div>
+            </div>
+            <div class="example-side">
+                <span class="tag">La intuición</span>
+                <p>PE bautiza a alguien concreto ($a$). PU luego "visita" a ese mismo $a$. Si se hace al revés, PU visita a $b$ (que no tiene nombre real) y PE nombra a $a$ — son distintos y no se conectan.</p>
+            </div>
+        </div>
+    </div>
+</div>`;
+
+export const generalizacionDetalleSlide = String.raw`
+<div class="slide">
+    <h2 class="slide-title">GU y GE: <span>Cómo y Cuándo</span> Aplicarlas</h2>
+    <div class="content">
+        <div class="guide-grid" style="grid-template-columns:1fr 1fr; margin-bottom:12px;">
+            <div class="guide-card">
+                <h3>GU — Generalización Universal</h3>
+                <p style="color:var(--ucv-accent); font-size:15px; text-align:center; margin:4px 0 8px;">$P(x)\ (x\ \text{arbitraria})\ \therefore\ \forall x:P(x)$</p>
+                <ul>
+                    <li>Se usa cuando la <strong>conclusión empieza con</strong> $\forall$</li>
+                    <li>Requiere que $x$ sea <strong>totalmente arbitraria</strong>: no tiene nombre concreto</li>
+                    <li>$x$ <strong>no puede venir</strong> de un PE anterior en la misma prueba</li>
+                    <li>$x$ <strong>no debe aparecer libre</strong> en ninguna premisa del argumento</li>
+                    <li>Argumento: "si lo probé sin saber quién es $x$, es verdad para todos"</li>
+                </ul>
+            </div>
+            <div class="guide-card">
+                <h3>GE — Generalización Existencial</h3>
+                <p style="color:var(--ucv-accent); font-size:15px; text-align:center; margin:4px 0 8px;">$P(a),\ a\in\mathbb{U}\ \therefore\ \exists x:P(x)$</p>
+                <ul>
+                    <li>Se usa cuando la <strong>conclusión empieza con</strong> $\exists$</li>
+                    <li>Se tiene un elemento concreto $a$ que ya cumple $P$ — eso es suficiente</li>
+                    <li>Se reemplaza $a$ por la variable $x$ bajo el $\exists$</li>
+                    <li>No tiene restricción sobre el origen de $a$: puede venir de PE, de PU, o de cualquier derivación</li>
+                    <li>Casi siempre es el <strong>último paso</strong> de la prueba</li>
+                </ul>
+            </div>
+        </div>
+        <div class="case-grid" style="margin-top:0;">
+            <div class="case-card" style="border-color:rgba(255,154,154,0.5);">
+                <div class="case-head">
+                    <h3>GU — Válido vs Inválido</h3>
+                    <span class="case-badge invalid">Restricción fuerte</span>
+                </div>
+                <p class="case-desc" style="font-size:16px;">
+                    <strong style="color:var(--ucv-accent);">✓ Válido:</strong> Se derivó $M(x)$ de $\forall x:H(x)$ y $\forall x:[H(x)\to M(x)]$ por PU+MP. $x$ nunca se fijó a ningún valor — el razonamiento funcionó para cualquier $x$. Se puede aplicar GU.<br><br>
+                    <strong style="color:#ff9a9a;">✗ Inválido:</strong> Se obtuvo $M(a)$ porque PE nombró $a$ desde $\exists x:H(x)$. $a$ es un individuo específico, no arbitrario. Aplicar GU daría $\forall x:M(x)$, que es una afirmación más fuerte de lo que se demostró.
+                </p>
+            </div>
+            <div class="case-card">
+                <div class="case-head">
+                    <h3>GE — Ejemplo paso a paso</h3>
+                    <span class="case-badge valid">Sin restricciones</span>
+                </div>
+                <p class="case-desc" style="font-size:16px;">
+                    Conclusión: $\exists x:[H(x)\land M(x)]$.<br><br>
+                    Si la prueba derivó $H(a)$ (por PE) y luego $M(a)$ (por MP), se conjunta: $H(a)\land M(a)$. GE cierra: se sustituye $a$ por $x$ → $\exists x:[H(x)\land M(x)]$ ✓<br><br>
+                    <strong>$a$ vino de PE</strong> y GE no tiene problema con eso — al contrario de GU.
                 </p>
             </div>
         </div>

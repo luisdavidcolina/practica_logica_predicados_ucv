@@ -1,6 +1,5 @@
 export const metodoDirectoSlide = String.raw`
 <div class="slide">
-    <span class="section-tag">Sección 2 · Herramientas</span>
     <h2 class="slide-title">Métodos de Prueba de <span>Validez</span></h2>
     <div class="content">
         <div class="guide-grid" style="margin-bottom:14px;">
@@ -64,7 +63,6 @@ export const metodoDirectoSlide = String.raw`
 
 export const pruebaInvalidezSlide = String.raw`
 <div class="slide">
-    <span class="section-tag">Sección 2 · Herramientas</span>
     <h2 class="slide-title">Prueba de <span>Invalidez</span> por Contraejemplo</h2>
     <div class="content">
         <div class="note-bar" style="margin-bottom:14px;">

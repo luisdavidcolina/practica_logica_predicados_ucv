@@ -1,45 +1,78 @@
 /**
- * buildIndexSlide(sections)
+ * buildIndexSlides(sections, perPage = 4)
  *
- * Genera el slide de índice dinámicamente desde el array sectionMeta
- * definido en index.js. Para navegar a subsecciones específicas, cada
- * topic es { text, anchorId }. Para actualizar el índice, solo edita
- * sectionMeta — no toques este archivo.
+ * Genera una o más láminas de índice automáticamente desde sections[].
+ * Si hay más de `perPage` secciones, crea páginas adicionales.
+ * Cada topic es { id, label } — viene directo de index.js, sin duplicación.
+ *
+ * Retorna un array de strings HTML (una por página de índice).
  */
-export const buildIndexSlide = (sections) => {
+export const buildIndexSlides = (sections, perPage = 4) => {
+    // Dividir secciones en páginas
+    const pages = [];
+    for (let i = 0; i < sections.length; i += perPage) {
+        pages.push(sections.slice(i, i + perPage));
+    }
+    const totalPages = pages.length;
 
-    const topicItem = (t) => `
-        <li
-            class="index-topic-item"
-            onclick="event.stopPropagation(); window.goToSlideId('${t.anchorId}')"
-            title="Ir a: ${t.text}"
-        ><span class="index-topic-bullet">›</span>${t.text}</li>`;
+    return pages.map((pageSections, pageIdx) => {
+        const pageNum  = pageIdx + 1;
+        const pageLabel = totalPages > 1 ? ` (${pageNum}/${totalPages})` : '';
 
-    const sectionCard = (s) => `
-        <div class="concept-card index-section-card" onclick="window.goToSlideId('${s.anchorId}')">
-            <div class="index-card-header">
-                <span class="concept-tag">${s.tag}</span>
-                <span class="index-count">${s.count}&thinsp;láminas</span>
-            </div>
-            <h3 class="index-card-title">${s.title}</h3>
-            <ul class="index-topic-list">
-                ${s.topics.map(topicItem).join('')}
-            </ul>
+        const topicItem = ({ id, label }) => `
+                <li class="index-topic-item"
+                    onclick="event.stopPropagation(); window.goToSlideId('${id}')"
+                    title="${label}"
+                ><span class="index-topic-bullet">›</span>${label}</li>`;
+
+        const MAX_VISIBLE = 5;   // temas visibles antes de "…y N más"
+
+        const sectionCard = (section) => {
+            const anchorId  = section.slides[0].id;
+            const count     = section.slides.length;
+            const visible   = section.slides.slice(0, MAX_VISIBLE);
+            const remaining = count - visible.length;
+            const moreItem  = remaining > 0
+                ? `<li class="index-topic-item" style="opacity:0.5; font-style:italic;"
+                       onclick="event.stopPropagation(); window.goToSlideId('${anchorId}')"
+                   >…y ${remaining} lámina${remaining > 1 ? 's' : ''} más</li>`
+                : '';
+            return `
+            <div class="concept-card index-section-card" onclick="window.goToSlideId('${anchorId}')">
+                <div class="index-card-header">
+                    <span class="concept-tag">${section.tag}</span>
+                    <span class="index-count">${count}&thinsp;láminas</span>
+                </div>
+                <h3 class="index-card-title">${section.title}</h3>
+                <ul class="index-topic-list">
+                    ${visible.map(topicItem).join('')}
+                    ${moreItem}
+                </ul>
+            </div>`;
+        };
+
+        // Nota de navegación (solo en la primera página)
+        const navNote = pageIdx === 0 ? `
+        <div class="note-bar" style="font-size:13px; padding:8px 16px; line-height:1.6;">
+            Clic en <strong>tarjeta</strong> → inicio de sección &nbsp;·&nbsp;
+            Clic en <strong>tema</strong> → esa lámina &nbsp;·&nbsp;
+            ← → · Espacio · Enter para navegar &nbsp;·&nbsp;
+            <i class="fas fa-home" style="color:var(--ucv-accent);"></i> volver al índice &nbsp;·&nbsp;
+            <i class="fas fa-sun" style="color:var(--ucv-accent);"></i> cambiar tema
+        </div>` : `
+        <div class="note-bar" style="font-size:13px; padding:8px 16px;">
+            ← flecha izquierda para ver la primera página del índice
         </div>`;
 
-    return `
-<div class="slide" id="slide-index">
-    <h2 class="slide-title">Índice de <span>Contenido</span></h2>
+        return `
+<div class="slide" id="${pageIdx === 0 ? 'slide-index' : `slide-index-${pageNum}`}">
+    <h2 class="slide-title">Índice de <span>Contenido</span>${pageLabel}</h2>
     <div class="content">
-        <div class="concept-grid" style="grid-template-columns:repeat(2,1fr); gap:12px; margin-bottom:10px;">
-            ${sections.map(sectionCard).join('')}
+        <div class="concept-grid" style="grid-template-columns:repeat(2,1fr); gap:11px; margin-bottom:10px;">
+            ${pageSections.map(sectionCard).join('')}
         </div>
-        <div class="note-bar" style="font-size:14px; padding:9px 16px; line-height:1.6;">
-            Haz clic en la <strong>tarjeta</strong> para ir al inicio de una sección, o en un <strong>tema</strong> para ir directamente a esa lámina. &nbsp;·&nbsp;
-            Navega con ← → · Espacio · Enter. &nbsp;·&nbsp;
-            <i class="fas fa-home" style="color:var(--ucv-accent);"></i> volver al índice &nbsp;·&nbsp;
-            <i class="fas fa-sun" style="color:var(--ucv-accent);"></i> cambiar tema.
-        </div>
+        ${navNote}
     </div>
 </div>`;
+    });
 };

@@ -2,7 +2,6 @@
 
 export const parcialLucinaAnalisisSlide = String.raw`
 <div class="slide">
-    <span class="section-tag">Sección 3 · Práctica</span>
     <h2 class="slide-title">Ejercicio 7: Prueba Condicional — <span>Parcial II, Ej. 3</span></h2>
     <div class="content">
         <div class="case-intro" style="font-size:17px; line-height:1.6;">
@@ -48,7 +47,6 @@ export const parcialLucinaAnalisisSlide = String.raw`
 
 export const parcialLucinaSolucionSlide = String.raw`
 <div class="slide">
-    <span class="section-tag">Sección 3 · Práctica</span>
     <h2 class="slide-title">Ejercicio 7: Prueba Condicional — <span>Solución (Lucina)</span></h2>
     <div class="content">
         <div class="note-bar" style="margin-bottom:10px;">
@@ -81,7 +79,6 @@ export const parcialLucinaSolucionSlide = String.raw`
 
 export const parcialComplejoBSlide = String.raw`
 <div class="slide">
-    <span class="section-tag">Sección 3 · Práctica</span>
     <h2 class="slide-title">Ejercicio 8: Validez Compleja — <span>Parcial II, Ej. 4</span> (Análisis)</h2>
     <div class="content">
         <div class="example-panel" style="margin-top:0;">
@@ -136,7 +133,6 @@ export const parcialComplejoBSlide = String.raw`
 
 export const parcialComplejoSolucionSlide = String.raw`
 <div class="slide">
-    <span class="section-tag">Sección 3 · Práctica</span>
     <h2 class="slide-title">Ejercicio 8: Validez Compleja — <span>Solución Completa</span></h2>
     <div class="content">
         <table class="formal-table" style="margin-top:0; font-size:15px;">
@@ -176,7 +172,6 @@ export const parcialComplejoSolucionSlide = String.raw`
 
 export const bibliografiaSlide = String.raw`
 <div class="slide">
-    <span class="section-tag">Bibliografía</span>
     <h2 class="slide-title">Referencias y <span>Materiales de la Cátedra</span></h2>
     <div class="content">
         <div class="guide-grid" style="margin-bottom:14px;">

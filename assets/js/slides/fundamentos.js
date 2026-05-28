@@ -1,6 +1,5 @@
 export const motivacionSlide = String.raw`
-<div class="slide" id="slide-motivacion">
-    <span class="section-tag">Sección 1 · Fundamentos</span>
+<div class="slide">
     <h2 class="slide-title">¿Por qué <span>Lógica de Predicados</span>?</h2>
     <div class="content">
         <div class="case-intro">
@@ -50,7 +49,6 @@ export const motivacionSlide = String.raw`
 
 export const predicadosSlide = String.raw`
 <div class="slide">
-    <span class="section-tag">Sección 1 · Fundamentos</span>
     <h2 class="slide-title">Predicados y <span>Proposiciones Abiertas</span></h2>
     <div class="content">
         <div class="concept-grid" style="grid-template-columns: repeat(2,1fr); margin-bottom:14px;">
@@ -103,7 +101,6 @@ export const predicadosSlide = String.raw`
 
 export const cuantificadoresSlide = String.raw`
 <div class="slide">
-    <span class="section-tag">Sección 1 · Fundamentos</span>
     <h2 class="slide-title">Cuantificadores: <span>$\forall$</span> y <span>$\exists$</span></h2>
     <div class="content">
         <div class="case-grid" style="margin-bottom:14px;">
@@ -159,7 +156,6 @@ export const cuantificadoresSlide = String.raw`
 
 export const negacionAlcanceSlide = String.raw`
 <div class="slide">
-    <span class="section-tag">Sección 1 · Fundamentos</span>
     <h2 class="slide-title">Negación, Alcance y <span>Variable Libre</span></h2>
     <div class="content">
         <div class="case-grid" style="margin-bottom:12px;">

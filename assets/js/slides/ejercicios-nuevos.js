@@ -4,7 +4,6 @@
 
 export const ej6PolinomioSetupSlide = String.raw`
 <div class="slide">
-    <span class="section-tag">Sección 3 · Práctica</span>
     <h2 class="slide-title">Laboratorio: <span>Predicados del Polinomio</span></h2>
     <div class="content">
         <div class="note-bar" style="margin-bottom:11px;">
@@ -47,7 +46,6 @@ export const ej6PolinomioSetupSlide = String.raw`
 
 export const ej6PolinomioVVSlide = String.raw`
 <div class="slide">
-    <span class="section-tag">Sección 3 · Práctica</span>
     <h2 class="slide-title">Ejercicio 9: Valor de Verdad — <span>Práctica 2, Ej. 6 (a, f, j)</span></h2>
     <div class="content">
         <div class="case-intro" style="font-size:16px;">
@@ -103,7 +101,6 @@ export const ej6PolinomioVVSlide = String.raw`
 
 export const parcial2Ej1SimbolizacionSlide = String.raw`
 <div class="slide">
-    <span class="section-tag">Sección 3 · Práctica</span>
     <h2 class="slide-title">Ejercicio 10: <span>Simbolización</span> — Parcial 2, Ej. 1</h2>
     <div class="content">
         <div class="case-intro" style="font-size:16px; line-height:1.6;">
@@ -164,7 +161,6 @@ export const parcial2Ej1SimbolizacionSlide = String.raw`
 
 export const parcial2Ej3bEquivSlide = String.raw`
 <div class="slide">
-    <span class="section-tag">Sección 3 · Práctica</span>
     <h2 class="slide-title">Ejercicio 11: <span>Prueba Elegante</span> — Equivalencia 8 (Parcial 2, Ej. 3b)</h2>
     <div class="content">
         <div class="case-intro" style="font-size:17px;">
@@ -215,7 +211,6 @@ export const parcial2Ej3bEquivSlide = String.raw`
 
 export const parcial2Ej5AnalisisSlide = String.raw`
 <div class="slide">
-    <span class="section-tag">Sección 3 · Práctica</span>
     <h2 class="slide-title">Ejercicio 12: Validez — <span>Parcial 2, Ej. 5</span> (Análisis)</h2>
     <div class="content">
         <div class="example-panel" style="margin-top:0;">
@@ -267,7 +262,6 @@ export const parcial2Ej5AnalisisSlide = String.raw`
 
 export const parcial2Ej5SolucionSlide = String.raw`
 <div class="slide">
-    <span class="section-tag">Sección 3 · Práctica</span>
     <h2 class="slide-title">Ejercicio 12: Validez — <span>Solución Completa (18 pasos)</span></h2>
     <div class="content">
         <table class="formal-table" style="margin-top:0; font-size:14px;">

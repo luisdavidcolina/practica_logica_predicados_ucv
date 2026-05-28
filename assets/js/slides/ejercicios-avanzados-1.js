@@ -2,7 +2,6 @@
 
 export const quizEj1Slide = String.raw`
 <div class="slide">
-    <span class="section-tag">Sección 3 · Práctica</span>
     <h2 class="slide-title">Ejercicio 4: <span>Simbolización</span> — Quiz II, Ej. 1</h2>
     <div class="content">
         <div class="case-intro" style="font-size:18px; line-height:1.6;">
@@ -51,7 +50,6 @@ export const quizEj1Slide = String.raw`
 
 export const quizEj3AnalisisSlide = String.raw`
 <div class="slide">
-    <span class="section-tag">Sección 3 · Práctica</span>
     <h2 class="slide-title">Ejercicio 5: Validez — <span>Quiz II, Ej. 3</span> (Análisis)</h2>
     <div class="content">
         <div class="example-panel" style="margin-top:0;">
@@ -107,7 +105,6 @@ export const quizEj3AnalisisSlide = String.raw`
 
 export const quizEj3SolucionSlide = String.raw`
 <div class="slide">
-    <span class="section-tag">Sección 3 · Práctica</span>
     <h2 class="slide-title">Ejercicio 5: Validez — <span>Quiz II, Ej. 3</span> (Solución)</h2>
     <div class="content">
         <table class="formal-table" style="margin-top:0; font-size:17px;">
@@ -141,7 +138,6 @@ export const quizEj3SolucionSlide = String.raw`
 
 export const quizEj2AnalisisSlide = String.raw`
 <div class="slide">
-    <span class="section-tag">Sección 3 · Práctica</span>
     <h2 class="slide-title">Ejercicio 6: Invalidez — <span>Quiz II, Ej. 2</span> (Análisis)</h2>
     <div class="content">
         <div class="example-panel" style="margin-top:0;">
@@ -185,7 +181,6 @@ export const quizEj2AnalisisSlide = String.raw`
 
 export const quizEj2SolucionSlide = String.raw`
 <div class="slide">
-    <span class="section-tag">Sección 3 · Práctica</span>
     <h2 class="slide-title">Ejercicio 6: Invalidez — <span>Contraejemplo $\mathbb{U} = \{a,b\}$</span></h2>
     <div class="content">
         <div class="note-bar" style="margin-bottom:12px;">
