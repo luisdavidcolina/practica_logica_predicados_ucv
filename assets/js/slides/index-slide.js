@@ -25,18 +25,9 @@ export const buildIndexSlides = (sections, perPage = 4) => {
                     title="${label}"
                 ><span class="index-topic-bullet">›</span>${label}</li>`;
 
-        const MAX_VISIBLE = 5;   // temas visibles antes de "…y N más"
-
         const sectionCard = (section) => {
-            const anchorId  = section.slides[0].id;
-            const count     = section.slides.length;
-            const visible   = section.slides.slice(0, MAX_VISIBLE);
-            const remaining = count - visible.length;
-            const moreItem  = remaining > 0
-                ? `<li class="index-topic-item" style="opacity:0.5; font-style:italic;"
-                       onclick="event.stopPropagation(); window.goToSlideId('${anchorId}')"
-                   >…y ${remaining} lámina${remaining > 1 ? 's' : ''} más</li>`
-                : '';
+            const anchorId = section.slides[0].id;
+            const count    = section.slides.length;
             return `
             <div class="concept-card index-section-card" onclick="window.goToSlideId('${anchorId}')">
                 <div class="index-card-header">
@@ -45,8 +36,7 @@ export const buildIndexSlides = (sections, perPage = 4) => {
                 </div>
                 <h3 class="index-card-title">${section.title}</h3>
                 <ul class="index-topic-list">
-                    ${visible.map(topicItem).join('')}
-                    ${moreItem}
+                    ${section.slides.map(topicItem).join('')}
                 </ul>
             </div>`;
         };

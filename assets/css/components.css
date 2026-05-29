@@ -569,7 +569,7 @@ td {
     display: flex;
     flex-direction: column;
     gap: 1px;
-    overflow: hidden;        /* contenido extra queda oculto limpiamente */
+    overflow: visible;
 }
 .index-topic-item {
     position: relative;

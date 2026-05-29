@@ -35,7 +35,17 @@ import {
 import {
     ej6PolinomioSetupSlide, ej6PolinomioVVSlide,
     parcial2Ej1SimbolizacionSlide, parcial2Ej3bEquivSlide,
-    parcial2Ej5AnalisisSlide, parcial2Ej5SolucionSlide
+    parcial2Ej5AnalisisSlide, parcial2Ej5SolucionSlide,
+    p2Ej1DefinicionesSlide,
+    p2Ej2VVExtraSlide,
+    p2Ej3AlcanceExtraSlide,
+    p2Ej4UniversoFinitoSlide,
+    p2Ej5SimbolizacionSlide,
+    p2Ej7EquivCSlide,
+    p2Ej8ImplFSlide,
+    p2Ej9ValidezBSlide,
+    p2Ej10InvalidezASlide,
+    p2Ej11ValidezASlide
 } from './ejercicios-nuevos.js';
 import {
     erroresSimbolizacionSlide, erroresPruebasSlide,
@@ -74,10 +84,20 @@ const sections = [
     {
         tag: 'Sección 3', title: 'Práctica 2',
         slides: [
-            { html: ejVV1Slide,             id: 'slide-ej-vv1',        label: 'VV — Práctica 2 ej. 2c · ∀x:[Q→¬S]' },
-            { html: ejAlcanceSlide,         id: 'slide-ej-alcance',    label: 'Alcance — Práctica 2 ej. 3e' },
-            { html: ej6PolinomioSetupSlide, id: 'slide-ej6-polinomio', label: 'Laboratorio: P(x)=(x-3)(x-5) · tabla de V/F' },
-            { html: ej6PolinomioVVSlide,    id: 'slide-ej6-vv',        label: 'VV polinomio — ítems (a),(f),(j) · asimetría P↔Q' },
+            { html: p2Ej1DefinicionesSlide,   id: 'slide-p2-ej1-def',       label: 'Ej. 1 — Definiciones: 𝕌, predicado, ∀, ∃, PU/PE/GU/GE, alcance, var. libre' },
+            { html: ejVV1Slide,               id: 'slide-ej-vv1',            label: 'Ej. 2c — VV: ∀x:[Q→¬S] · contraejemplo x=4' },
+            { html: p2Ej2VVExtraSlide,        id: 'slide-p2-ej2-vv-extra',   label: 'Ej. 2 — VV ítems a, d, e · testigos y contraejemplos' },
+            { html: ejAlcanceSlide,           id: 'slide-ej-alcance',        label: 'Ej. 3e — Alcance: ∃x:P(x) ↔ ∃y:R(y) ∧ Q(x) libre' },
+            { html: p2Ej3AlcanceExtraSlide,   id: 'slide-p2-ej3-alcance',    label: 'Ej. 3 — Alcance ítems a, b · cuantificadores anidados' },
+            { html: p2Ej4UniversoFinitoSlide, id: 'slide-p2-ej4-finito',     label: 'Ej. 4 — Universo finito {a,b} ítems a, c · expansión proposicional' },
+            { html: p2Ej5SimbolizacionSlide,  id: 'slide-p2-ej5-simb',       label: 'Ej. 5a — Simbolización: bailarines de claqué · patrón SH' },
+            { html: ej6PolinomioSetupSlide,   id: 'slide-ej6-polinomio',     label: 'Ej. 6 — Laboratorio: P(x)=(x−3)(x−5) · tabla de V/F' },
+            { html: ej6PolinomioVVSlide,      id: 'slide-ej6-vv',            label: 'Ej. 6 — VV ítems (a),(f),(j) · asimetría P↔Q' },
+            { html: p2Ej7EquivCSlide,         id: 'slide-p2-ej7-equiv-c',    label: 'Ej. 7c — Equivalencia ∀x:[P∧Q] ≡ ∀x:P ∧ ∀x:Q (bidireccional)' },
+            { html: p2Ej8ImplFSlide,          id: 'slide-p2-ej8-impl-f',     label: 'Ej. 8f — Implicación ∀[P→Q] ⇒ ∃P→∃Q · método condicional' },
+            { html: p2Ej9ValidezBSlide,       id: 'slide-p2-ej9-validez-b',  label: 'Ej. 9b — Validez: bailarines/esgrimistas · PE+MT+GE (9 pasos)' },
+            { html: p2Ej10InvalidezASlide,    id: 'slide-p2-ej10-invalidez', label: 'Ej. 10a — Invalidez: contraejemplo 𝕌={a}, P(a)=V, R(a)=F' },
+            { html: p2Ej11ValidezASlide,      id: 'slide-p2-ej11-validez-a', label: 'Ej. 11a — Validez compleja: PC+GU+distributiva ∨∧ (13 pasos)' },
         ]
     },
     {
@@ -146,7 +166,7 @@ function buildContentSlides(sections) {
 
 export const slides = [
     coverSlide,
-    ...buildIndexSlides(sections),          // 2 páginas de índice (S1-S4 / S5-S8)
+    ...buildIndexSlides(sections, 2),        // 4 páginas de índice (S1-S2 / S3-S4 / S5-S6 / S7-S8)
     ...buildContentSlides(sections),
     bibliografiaSlide,
 ];

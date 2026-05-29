@@ -298,3 +298,449 @@ export const parcial2Ej5SolucionSlide = String.raw`
         </div>
     </div>
 </div>`;
+
+// ─── Ej. 1 — Definiciones (todas) ─────────────────────────────────────────────
+
+export const p2Ej1DefinicionesSlide = String.raw`
+<div class="slide">
+    <h2 class="slide-title">Ejercicio 1: <span>Definiciones</span> — Práctica 2</h2>
+    <div class="content">
+        <table class="formal-table" style="margin-top:0; font-size:15.5px;">
+            <thead>
+                <tr><th style="width:210px;">Concepto</th><th>Definición</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>a) Universo del discurso</strong> $\mathbb{U}$</td>
+                    <td>Conjunto no vacío sobre el que se definen los predicados. Todas las variables toman valores en $\mathbb{U}$ y todos los cuantificadores lo recorren.</td>
+                </tr>
+                <tr>
+                    <td><strong>b) Predicado</strong> (proposición abierta)</td>
+                    <td>Expresión $P(x)$ que contiene variables libres y se convierte en una proposición (V o F) al sustituir cada variable por un elemento de $\mathbb{U}$. Ejemplo: $P(x): x>0$.</td>
+                </tr>
+                <tr>
+                    <td><strong>c) Cuantificador universal</strong> $\forall$</td>
+                    <td>$\forall x:P(x)$ es V $\iff$ $P(a)=\text{V}$ para <em>todo</em> $a\in\mathbb{U}$. Basta un $a_0$ con $P(a_0)=\text{F}$ (contraejemplo) para que sea F.</td>
+                </tr>
+                <tr>
+                    <td><strong>d) Cuantificador existencial</strong> $\exists$</td>
+                    <td>$\exists x:P(x)$ es V $\iff$ existe al menos un $a\in\mathbb{U}$ con $P(a)=\text{V}$ (testigo). Es F solo si $P(a)=\text{F}$ para <em>todo</em> $a\in\mathbb{U}$.</td>
+                </tr>
+                <tr>
+                    <td><strong>e) Principios de particularización y generalización</strong></td>
+                    <td>Cuatro reglas de inferencia para cuantificadores: <strong>PU</strong>: $\forall x:P(x)\therefore P(a),\ a\in\mathbb{U}$ · <strong>PE</strong>: $\exists x:P(x)\therefore P(a),\ a\ \text{nuevo}$ · <strong>GU</strong>: $P(x)\ \text{arb.}\therefore\forall x:P(x)$ · <strong>GE</strong>: $P(a)\therefore\exists x:P(x)$</td>
+                </tr>
+                <tr>
+                    <td><strong>f) Alcance de un cuantificador</strong></td>
+                    <td>La mínima fórmula bien formada (fbf) que sigue inmediatamente al cuantificador. Los corchetes $[\cdot]$ amplían el alcance. Ejemplo: en $\forall x:P(x)\land Q(x)$, el $\forall x$ solo alcanza $P(x)$.</td>
+                </tr>
+                <tr>
+                    <td><strong>g) Variable libre</strong></td>
+                    <td>Variable que aparece en una fórmula sin estar dentro del alcance de ningún cuantificador que la cuantifique. Ejemplo: en $\exists x:P(x)\land Q(y)$, la variable $y$ es libre; $x$ es ligada.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>`;
+
+// ─── Ej. 2 — VV ítems a, d, e (≠ 2c del PDF) ─────────────────────────────────
+
+export const p2Ej2VVExtraSlide = String.raw`
+<div class="slide">
+    <h2 class="slide-title">Ejercicio 2: <span>Valor de Verdad</span> — Ítems a, d, e</h2>
+    <div class="content">
+        <div class="note-bar" style="margin-bottom:10px; font-size:15px;">
+            $\mathbb{U}=\mathbb{Z}$. Predicados: $P(x):x>0$ · $Q(x):x\ \text{par}$ · $S(x):x\ \text{div. por}\ 4$ · $R(x):x\ \text{cuadrado perf.}$ · $T(x):x\ \text{div. por}\ 5$
+        </div>
+        <table class="formal-table" style="margin-top:0; font-size:15.5px;">
+            <thead>
+                <tr><th style="width:50px;">Ítem</th><th>Simbolización</th><th style="width:70px;">Valor</th><th>Justificación</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>(a)</td>
+                    <td>$\exists x:Q(x)$<br><span style="font-size:13px; color:var(--text-dim);">"Al menos un entero es par"</span></td>
+                    <td style="color:var(--ucv-accent); font-weight:900;">V ✓</td>
+                    <td><strong>Testigo</strong>: $x=2$. $Q(2)=\text{V}$ (2 es par). Basta un testigo para verificar el existencial.</td>
+                </tr>
+                <tr>
+                    <td>(d)</td>
+                    <td>$\forall x:[Q(x)\to\lnot T(x)]$<br><span style="font-size:13px; color:var(--text-dim);">"Ningún entero par es div. por 5"</span></td>
+                    <td style="color:#ff9a9a; font-weight:900;">F ✗</td>
+                    <td><strong>Contraejemplo</strong>: $x=10$. $Q(10)=\text{V}$ (par) y $T(10)=\text{V}$ (10÷5=2), entonces $\lnot T(10)=\text{F}$. Condicional $\text{V}\to\text{F}\equiv\text{F}$.</td>
+                </tr>
+                <tr>
+                    <td>(e)</td>
+                    <td>$\exists x:[Q(x)\land T(x)]$<br><span style="font-size:13px; color:var(--text-dim);">"Existe un entero par y div. por 5"</span></td>
+                    <td style="color:var(--ucv-accent); font-weight:900;">V ✓</td>
+                    <td><strong>Testigo</strong>: $x=10$. $Q(10)=\text{V}$ y $T(10)=\text{V}$, luego $Q(10)\land T(10)=\text{V}$. Proposición existencial verdadera.</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="note-bar" style="margin-top:10px; font-size:15px;">
+            <strong>Relación (d)–(e):</strong> (d) es la negación de (e): $\forall x:[Q(x)\to\lnot T(x)]\equiv\lnot[\exists x:[Q(x)\land T(x)]]$. Como (e) es V, (d) es necesariamente F.
+        </div>
+    </div>
+</div>`;
+
+// ─── Ej. 3 — Alcance ítems a y b (≠ 3e del PDF) ──────────────────────────────
+
+export const p2Ej3AlcanceExtraSlide = String.raw`
+<div class="slide">
+    <h2 class="slide-title">Ejercicio 3: <span>Alcance</span> — Ítems a y b</h2>
+    <div class="content">
+        <div class="guide-grid" style="grid-template-columns:1fr 1fr; margin-bottom:12px;">
+            <div class="guide-card">
+                <h3>Ítem a) $\forall x:P(x)\land Q(x)\land\exists x:[Q(x)\land P(x)]$</h3>
+                <ul>
+                    <li>Alcance $\forall x$: solo <strong style="color:var(--ucv-accent);">$P(x)$</strong> — mínima fbf que le sigue</li>
+                    <li>Alcance $\exists x$: toda la expresión entre corchetes <strong style="color:var(--ucv-accent);">$[Q(x)\land P(x)]$</strong></li>
+                    <li>El $Q(x)$ intermedio (entre los dos cuantificadores) <strong style="color:#ff9a9a;">no está bajo ningún alcance → variable libre</strong></li>
+                </ul>
+                <div class="note-bar" style="margin-top:8px; font-size:13px; padding:6px 10px; line-height:2;">
+                    $\underbrace{\forall x:\overbrace{P(x)}^{\text{alc.}\forall}}\land\underbrace{Q(x)}_{\text{libre}}\land\underbrace{\exists x:\overbrace{[Q(x)\land P(x)]}^{\text{alc.}\exists}}_{}$
+                </div>
+            </div>
+            <div class="guide-card">
+                <h3>Ítem b) $\forall x[\exists z:[P(x)\to R(z)]]$</h3>
+                <ul>
+                    <li>Alcance $\forall x$: toda la expresión entre corchetes externos: <strong style="color:var(--ucv-accent);">$\exists z:[P(x)\to R(z)]$</strong></li>
+                    <li>Alcance $\exists z$: el condicional entre sus corchetes: <strong style="color:var(--ucv-accent);">$[P(x)\to R(z)]$</strong></li>
+                    <li>$x$ está ligada a $\forall x$ · $z$ está ligada a $\exists z$ · <strong>no hay variables libres</strong></li>
+                </ul>
+                <div class="note-bar" style="margin-top:8px; font-size:13px; padding:6px 10px; line-height:2;">
+                    $\underbrace{\forall x\overbrace{[\underbrace{\exists z:\overbrace{[P(x)\to R(z)]}^{\text{alc.}\exists z}}_{}]}^{\text{alc.}\forall x}}_{}$
+                </div>
+            </div>
+        </div>
+        <div class="note-bar" style="font-size:15px;">
+            <strong>Comparación (a) vs (b):</strong> En (a) el $\forall x$ no tiene corchetes → alcance mínimo $P(x)$, dejando $Q(x)$ libre. En (b) los corchetes externos del $\forall x$ encierran todo, incluyendo el $\exists z$ anidado. Los corchetes son obligatorios para ampliar el alcance.
+        </div>
+    </div>
+</div>`;
+
+// ─── Ej. 4 — Universo finito {a,b} ítems a y c (≠ 4e del PDF) ────────────────
+
+export const p2Ej4UniversoFinitoSlide = String.raw`
+<div class="slide">
+    <h2 class="slide-title">Ejercicio 4: <span>Universo Finito</span> $\mathbb{U}=\{a,b\}$ — Ítems a y c</h2>
+    <div class="content">
+        <div class="note-bar" style="margin-bottom:10px; font-size:15px;">
+            Si $\mathbb{U}=\{x_1,\ldots,x_n\}$: $\quad\forall x:P(x)\equiv P(x_1)\land\cdots\land P(x_n)\quad$ y $\quad\exists x:P(x)\equiv P(x_1)\lor\cdots\lor P(x_n)$
+        </div>
+        <div class="guide-grid" style="grid-template-columns:1fr 1fr; margin-bottom:10px;">
+            <div class="guide-card">
+                <h3>Ítem a) $\forall x:P(x)\to\exists x:R(x)$</h3>
+                <p style="font-size:14px; color:var(--text-dim); margin-bottom:8px;">Sin corchetes externos: el $\forall x$ alcanza solo $P(x)$ y el $\exists x$ alcanza solo $R(x)$. La implicación $\to$ está <em>fuera</em> de ambos cuantificadores.</p>
+                <div class="case-formula" style="font-size:16px; line-height:2.1; padding:10px 14px; text-align:left;">
+                    $\forall x:P(x)\ \equiv\ P(a)\land P(b)$<br>
+                    $\exists x:R(x)\ \equiv\ R(a)\lor R(b)$<br>
+                    $\therefore\ [P(a)\land P(b)]\to[R(a)\lor R(b)]$
+                </div>
+            </div>
+            <div class="guide-card">
+                <h3>Ítem c) $\forall x:[P(x)\lor R(x)]$</h3>
+                <p style="font-size:14px; color:var(--text-dim); margin-bottom:8px;">Los corchetes amplían el alcance del $\forall x$ sobre toda la disyunción. Se expande aplicando la regla a la fórmula completa $P(x)\lor R(x)$.</p>
+                <div class="case-formula" style="font-size:16px; line-height:2.1; padding:10px 14px; text-align:left;">
+                    $\forall x:[P(x)\lor R(x)]$<br>
+                    $\equiv\ [P(a)\lor R(a)]\land[P(b)\lor R(b)]$
+                </div>
+                <p style="font-size:14px; color:var(--text-dim); margin-top:6px;">⚠ Compare con (a): el alcance del $\forall$ cambia todo.</p>
+            </div>
+        </div>
+        <div class="case-grid" style="grid-template-columns:1fr 1fr; margin-top:0;">
+            <div class="case-card">
+                <div class="case-head"><h3>Ítem a — ¿qué dice?</h3></div>
+                <p class="case-desc" style="font-size:15px;">"Si todo elemento cumple $P$, entonces existe alguno que cumple $R$." La implicación es entre dos proposiciones completas, no dentro del cuantificador.</p>
+            </div>
+            <div class="case-card">
+                <div class="case-head"><h3>Ítem c — ¿qué dice?</h3></div>
+                <p class="case-desc" style="font-size:15px;">"Para cada elemento del universo, ese elemento cumple $P$ o cumple $R$ (o ambas)." Es una propiedad que se exige a <em>cada</em> elemento individualmente.</p>
+            </div>
+        </div>
+    </div>
+</div>`;
+
+// ─── Ej. 5 — Simbolización ítem a (≠ 5b del PDF) ─────────────────────────────
+
+export const p2Ej5SimbolizacionSlide = String.raw`
+<div class="slide">
+    <h2 class="slide-title">Ejercicio 5: <span>Simbolización</span> — Ítem a (Bailarines de Claqué)</h2>
+    <div class="content">
+        <div class="case-intro" style="font-size:16px; line-height:1.6;">
+            "Todos los bailarines de claqué son saltarines. Nadie que sea saltarín pesa mucho. Por lo tanto, ningún bailarín de claqué pesa mucho."
+        </div>
+        <div class="example-panel" style="margin-top:10px;">
+            <div class="example-card">
+                <h3>Paso 1: Definición</h3>
+                <div class="example-item">
+                    <span class="step">$\mathbb{U}$</span>
+                    <span class="text">$\mathbb{U}=\{\text{personas}\}$</span>
+                </div>
+                <div class="example-item">
+                    <span class="step">$B(x)$</span>
+                    <span class="text">$x$ es bailarín de claqué</span>
+                </div>
+                <div class="example-item">
+                    <span class="step">$S(x)$</span>
+                    <span class="text">$x$ es saltarín</span>
+                </div>
+                <div class="example-item">
+                    <span class="step">$P(x)$</span>
+                    <span class="text">$x$ pesa mucho</span>
+                </div>
+                <h3 style="margin-top:12px; font-size:18px;">Paso 2: Simbolización</h3>
+                <div class="example-item">
+                    <span class="step">P1</span>
+                    <span class="text" style="color:var(--ucv-accent);">$\forall x:[B(x)\to S(x)]$</span>
+                </div>
+                <div class="example-item">
+                    <span class="step">P2</span>
+                    <span class="text" style="color:var(--ucv-accent);">$\lnot[\exists x:[S(x)\land P(x)]]\equiv\forall x:[S(x)\to\lnot P(x)]$</span>
+                </div>
+                <div class="example-item">
+                    <span class="step">$\therefore$ C</span>
+                    <span class="text" style="color:var(--ucv-accent);">$\lnot[\exists x:[B(x)\land P(x)]]\equiv\forall x:[B(x)\to\lnot P(x)]$</span>
+                </div>
+            </div>
+            <div class="example-side">
+                <span class="tag">Nadie = ¬∃ = ∀¬</span>
+                <p>"Nadie que sea $S$ hace $P$" tiene dos simbolizaciones equivalentes:<br>
+                $\lnot[\exists x:[S(x)\land P(x)]]$ — "no existe ninguno"<br>
+                $\forall x:[S(x)\to\lnot P(x)]$ — "todo $S$ no hace $P$"</p>
+                <span class="tag" style="margin-top:10px;">Patrón SH</span>
+                <p>La conclusión se obtiene por <strong>Silogismo Hipotético</strong>: $B\to S$, $S\to\lnot P$ $\therefore B\to\lnot P$. Luego GU sobre $x$ arbitraria.</p>
+            </div>
+        </div>
+    </div>
+</div>`;
+
+// ─── Ej. 7 — Equivalencia ítem c (≠ 7h del PDF) ──────────────────────────────
+
+export const p2Ej7EquivCSlide = String.raw`
+<div class="slide">
+    <h2 class="slide-title">Ejercicio 7: <span>Equivalencia</span> — Ítem c</h2>
+    <div class="content">
+        <div class="case-intro" style="font-size:17px;">
+            Demuestre: $\forall x:[P(x)\land Q(x)]\ \equiv\ \forall x:P(x)\land\forall x:Q(x)$
+        </div>
+        <div class="example-panel" style="grid-template-columns:1fr 1fr; margin-top:8px;">
+            <div class="example-card">
+                <h3>Dirección $(\Rightarrow)$</h3>
+                <p style="font-size:13px; color:var(--text-dim); margin-bottom:5px;">Premisa: $\forall x:[P(x)\land Q(x)]$ — Meta: $\forall x:P(x)\land\forall x:Q(x)$</p>
+                <table class="formal-table" style="font-size:14.5px; margin:0;">
+                    <thead><tr><th>#</th><th>Proposición</th><th>Justif.</th></tr></thead>
+                    <tbody>
+                        <tr><td>1</td><td>$\forall x:[P(x)\land Q(x)]$</td><td>Premisa</td></tr>
+                        <tr><td>2</td><td>$P(x)\land Q(x)$</td><td>PU en 1</td></tr>
+                        <tr><td>3</td><td>$P(x)$</td><td>Simp. en 2</td></tr>
+                        <tr><td>4</td><td>$Q(x)$</td><td>Simp. en 2</td></tr>
+                        <tr><td>5</td><td>$\forall x:P(x)$</td><td>GU en 3</td></tr>
+                        <tr><td>6</td><td>$\forall x:Q(x)$</td><td>GU en 4</td></tr>
+                        <tr><td>7</td><td>$\forall x:P(x)\land\forall x:Q(x)$</td><td>Conj. 5,6</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="example-card">
+                <h3>Dirección $(\Leftarrow)$</h3>
+                <p style="font-size:13px; color:var(--text-dim); margin-bottom:5px;">Premisa: $\forall x:P(x)\land\forall x:Q(x)$ — Meta: $\forall x:[P(x)\land Q(x)]$</p>
+                <table class="formal-table" style="font-size:14.5px; margin:0;">
+                    <thead><tr><th>#</th><th>Proposición</th><th>Justif.</th></tr></thead>
+                    <tbody>
+                        <tr><td>1</td><td>$\forall x:P(x)\land\forall x:Q(x)$</td><td>Premisa</td></tr>
+                        <tr><td>2</td><td>$\forall x:P(x)$</td><td>Simp. en 1</td></tr>
+                        <tr><td>3</td><td>$\forall x:Q(x)$</td><td>Simp. en 1</td></tr>
+                        <tr><td>4</td><td>$P(x)$</td><td>PU en 2</td></tr>
+                        <tr><td>5</td><td>$Q(x)$</td><td>PU en 3</td></tr>
+                        <tr><td>6</td><td>$P(x)\land Q(x)$</td><td>Conj. 4,5</td></tr>
+                        <tr><td>7</td><td>$\forall x:[P(x)\land Q(x)]$</td><td>GU en 6</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="note-bar" style="margin-top:8px; font-size:15px;">
+            Ambas direcciones usan PU + Simplificación + GU. La $x$ debe ser <strong>arbitraria</strong> en ambas para que GU sea válido. Esta equivalencia <strong>no se cumple</strong> para $\exists$ con $\land$ (solo es implicación en un sentido).
+        </div>
+    </div>
+</div>`;
+
+// ─── Ej. 8 — Implicación ítem f (≠ 8d del PDF) ───────────────────────────────
+
+export const p2Ej8ImplFSlide = String.raw`
+<div class="slide">
+    <h2 class="slide-title">Ejercicio 8: <span>Implicación</span> — Ítem f</h2>
+    <div class="content">
+        <div class="case-intro" style="font-size:17px;">
+            Demuestre: $\forall x:[P(x)\to Q(x)]\ \Rightarrow\ \exists x:P(x)\to\exists x:Q(x)$
+        </div>
+        <div class="example-panel" style="margin-top:10px; grid-template-columns:1.5fr 0.8fr;">
+            <div class="example-card">
+                <h3>Prueba — Método Condicional (PC)</h3>
+                <table class="formal-table" style="font-size:15.5px; margin:0;">
+                    <thead><tr><th style="width:45px;">Paso</th><th>Proposición</th><th>Justificación</th></tr></thead>
+                    <tbody>
+                        <tr><td>1</td><td>$\forall x:[P(x)\to Q(x)]$</td><td>Premisa 1</td></tr>
+                        <tr style="background:rgba(200,240,122,0.06);"><td>2</td><td>$\exists x:P(x)$</td><td>Premisa condicional [PC]</td></tr>
+                        <tr><td>3</td><td>$P(a)$</td><td>PE para $x=a$ en 2</td></tr>
+                        <tr><td>4</td><td>$P(a)\to Q(a)$</td><td>PU para $x=a$ en 1</td></tr>
+                        <tr><td>5</td><td>$Q(a)$</td><td>Modus Ponens en 3,4</td></tr>
+                        <tr><td>6</td><td>$\exists x:Q(x)$</td><td>GE en 5</td></tr>
+                        <tr style="background:rgba(200,240,122,0.06);"><td>7</td><td>$\exists x:P(x)\to\exists x:Q(x)$</td><td>Prueba Condicional</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="example-side">
+                <span class="tag">¿Por qué PC?</span>
+                <p>La conclusión es un condicional $A\to B$. PC asume $A=\exists x:P(x)$ y demuestra $B=\exists x:Q(x)$.</p>
+                <span class="tag" style="margin-top:10px;">PE antes que PU</span>
+                <p>En paso 3 se aplica PE al existencial asumido antes de PU en paso 4 — orden correcto.</p>
+                <span class="tag" style="margin-top:10px;">Uso de esta implicación</span>
+                <p>Permite "pasar" el existencial a través de una regla universal. Fundamental en demostraciones de la forma $\exists x:Q(x)$.</p>
+            </div>
+        </div>
+    </div>
+</div>`;
+
+// ─── Ej. 9 — Validez ítem b (≠ 9i del PDF) ───────────────────────────────────
+
+export const p2Ej9ValidezBSlide = String.raw`
+<div class="slide">
+    <h2 class="slide-title">Ejercicio 9: <span>Validez</span> — Ítem b (Bailarines / Esgrimistas)</h2>
+    <div class="content">
+        <div class="example-panel" style="margin-top:0;">
+            <div class="example-card" style="flex:1.4;">
+                <h3>Enunciado y Simbolización</h3>
+                <p style="font-size:14px; color:var(--text-dim); margin-bottom:6px;">"Todos los bailarines son afeminados. Algunos esgrimistas no son afeminados. En consecuencia, algunos esgrimistas no son bailarines."</p>
+                <div class="example-item">
+                    <span class="step">$\mathbb{U}$, pred.</span>
+                    <span class="text">$\mathbb{U}=\{\text{personas}\}$ · $B(x)$: bailarín · $A(x)$: afeminado · $E(x)$: esgrimista</span>
+                </div>
+                <div class="example-item">
+                    <span class="step">P1</span>
+                    <span class="text" style="color:var(--ucv-accent);">$\forall x:[B(x)\to A(x)]$</span>
+                </div>
+                <div class="example-item">
+                    <span class="step">P2</span>
+                    <span class="text" style="color:var(--ucv-accent);">$\exists x:[E(x)\land\lnot A(x)]$</span>
+                </div>
+                <div class="example-item">
+                    <span class="step">$\therefore$ C</span>
+                    <span class="text" style="color:var(--ucv-accent);">$\exists x:[E(x)\land\lnot B(x)]$</span>
+                </div>
+            </div>
+            <div class="example-side">
+                <span class="tag">Estrategia</span>
+                <p>P2 es $\exists$ → <strong>PE primero</strong> → $E(a)\land\lnot A(a)$. Simplificar ambos. P1 es $\forall$ → PU con $a$ → $B(a)\to A(a)$. MT con $\lnot A(a)$ → $\lnot B(a)$. Conjuntar → GE.</p>
+            </div>
+        </div>
+        <table class="formal-table" style="margin-top:10px; font-size:15px;">
+            <thead><tr><th style="width:45px;">Paso</th><th>Proposición</th><th>Justificación</th></tr></thead>
+            <tbody>
+                <tr><td>1</td><td>$\forall x:[B(x)\to A(x)]$</td><td>Premisa 1</td></tr>
+                <tr><td>2</td><td>$\exists x:[E(x)\land\lnot A(x)]$</td><td>Premisa 2</td></tr>
+                <tr style="background:rgba(200,240,122,0.06);"><td>3</td><td>$E(a)\land\lnot A(a)$</td><td>PE para $x=a$ en 2 <strong style="color:var(--ucv-accent);">(PE antes que PU)</strong></td></tr>
+                <tr><td>4</td><td>$E(a)$</td><td>Simplificación en 3</td></tr>
+                <tr><td>5</td><td>$\lnot A(a)$</td><td>Simplificación en 3</td></tr>
+                <tr><td>6</td><td>$B(a)\to A(a)$</td><td>PU para $x=a$ en 1</td></tr>
+                <tr><td>7</td><td>$\lnot B(a)$</td><td>Modus Tollens en 5,6</td></tr>
+                <tr><td>8</td><td>$E(a)\land\lnot B(a)$</td><td>Conjunción en 4,7</td></tr>
+                <tr><td>9</td><td>$\exists x:[E(x)\land\lnot B(x)]$</td><td>GE en 8</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>`;
+
+// ─── Ej. 10 — Invalidez ítem a (≠ 10c del PDF) ───────────────────────────────
+
+export const p2Ej10InvalidezASlide = String.raw`
+<div class="slide">
+    <h2 class="slide-title">Ejercicio 10: <span>Invalidez</span> — Ítem a</h2>
+    <div class="content">
+        <div class="example-panel" style="margin-top:0;">
+            <div class="example-card" style="flex:1;">
+                <h3>Argumento</h3>
+                <div class="case-formula" style="font-size:18px; line-height:2.2; text-align:left; padding:12px 16px;">
+                    P1: $\forall x:[P(x)\lor R(x)]$<br>
+                    P2: $\forall x:[P(x)\land S(x)]$<br>
+                    $\therefore\ \forall x:[R(x)\land S(x)]$
+                </div>
+            </div>
+            <div class="example-side">
+                <span class="tag">Estrategia</span>
+                <p>Hacer la <strong>conclusión F</strong> primero: necesitamos $R(a)=\text{F}$ (o $S(a)=\text{F}$). Verificar si P1 y P2 pueden ser V simultáneamente.</p>
+                <p>P2 exige $P(a)=\text{V}$ y $S(a)=\text{V}$. Con $P(a)=\text{V}$, P1 se satisface sin importar $R(a)$. Tomamos $R(a)=\text{F}$.</p>
+            </div>
+        </div>
+        <div class="guide-grid" style="margin-top:10px; margin-bottom:10px;">
+            <div class="guide-card" style="min-height:0;">
+                <h3 style="font-size:17px;">Con $\mathbb{U}=\{a\}$, $P(a)=\text{V}$, $R(a)=\text{F}$, $S(a)=\text{V}$</h3>
+                <ul>
+                    <li>P1: $P(a)\lor R(a)=\text{V}\lor\text{F}=\text{V}$ ✓</li>
+                    <li>P2: $P(a)\land S(a)=\text{V}\land\text{V}=\text{V}$ ✓</li>
+                    <li>C: $R(a)\land S(a)=\text{F}\land\text{V}=\text{F}$ ← <strong style="color:#ff9a9a;">premisas V, conclusión F</strong></li>
+                </ul>
+            </div>
+            <div class="guide-card" style="min-height:0;">
+                <h3 style="font-size:17px;">Tabla del contraejemplo</h3>
+                <table class="logic-table" style="margin-top:8px; font-size:16px;">
+                    <thead><tr><th>$P(a)$</th><th>$R(a)$</th><th>$S(a)$</th><th>P1</th><th>P2</th><th>C</th></tr></thead>
+                    <tbody>
+                        <tr>
+                            <td style="color:var(--ucv-accent);">V</td>
+                            <td style="color:#ff9a9a;">F</td>
+                            <td style="color:var(--ucv-accent);">V</td>
+                            <td style="color:var(--ucv-accent);">V</td>
+                            <td style="color:var(--ucv-accent);">V</td>
+                            <td style="color:#ff9a9a; font-weight:900;">F ✓</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p style="font-size:14px; margin-top:8px; color:var(--text-dim);">El argumento es <strong style="color:#ff9a9a;">INVÁLIDO</strong> con $\mathbb{U}=\{a\}$.</p>
+            </div>
+        </div>
+        <div class="note-bar" style="font-size:15px;">
+            <strong>Intuición:</strong> P2 garantiza $P$ y $S$ para todos, pero P1 solo necesita $P$ ó $R$ — como ya tenemos $P$, $R$ puede ser F. La conclusión pide $R$ y $S$ juntos, pero $R$ no tiene ninguna premisa que la fuerce a ser V.
+        </div>
+    </div>
+</div>`;
+
+// ─── Ej. 11 — Validez ítem a (≠ 11c del PDF) ─────────────────────────────────
+
+export const p2Ej11ValidezASlide = String.raw`
+<div class="slide">
+    <h2 class="slide-title">Ejercicio 11: <span>Validez</span> — Ítem a (PC + GU)</h2>
+    <div class="content">
+        <div class="example-panel" style="margin-top:0;">
+            <div class="example-card" style="flex:1.1;">
+                <h3>Argumento</h3>
+                <div class="case-formula" style="font-size:17px; line-height:2; text-align:left; padding:10px 14px;">
+                    P1: $\forall x:[P(x)\lor Q(x)]$<br>
+                    P2: $\forall x:[\lnot P(x)\land Q(x)\to R(x)]$<br>
+                    $\therefore\ \forall x:[\lnot R(x)\to P(x)]$
+                </div>
+            </div>
+            <div class="example-side">
+                <span class="tag">Método: PC + GU</span>
+                <p>La conclusión es $\forall x:[\lnot R(x)\to P(x)]$. Para $x$ arbitraria: asumir $\lnot R(x)$ [PC], derivar $P(x)$, aplicar GU al final.</p>
+            </div>
+        </div>
+        <table class="formal-table" style="margin-top:10px; font-size:14px;">
+            <thead><tr><th style="width:45px;">Paso</th><th>Proposición</th><th>Justificación</th></tr></thead>
+            <tbody>
+                <tr><td>1</td><td>$\forall x:[P(x)\lor Q(x)]$</td><td>Premisa 1</td></tr>
+                <tr><td>2</td><td>$\forall x:[\lnot P(x)\land Q(x)\to R(x)]$</td><td>Premisa 2</td></tr>
+                <tr style="background:rgba(200,240,122,0.06);"><td>3</td><td>$\lnot R(x)$</td><td>Premisa condicional [PC], $x$ arbitraria</td></tr>
+                <tr><td>4</td><td>$\lnot P(x)\land Q(x)\to R(x)$</td><td>PU en 2</td></tr>
+                <tr><td>5</td><td>$\lnot[\lnot P(x)\land Q(x)]$</td><td>Modus Tollens en 3,4</td></tr>
+                <tr><td>6</td><td>$P(x)\lor\lnot Q(x)$</td><td>De Morgan en 5</td></tr>
+                <tr><td>7</td><td>$P(x)\lor Q(x)$</td><td>PU en 1</td></tr>
+                <tr><td>8</td><td>$[P(x)\lor\lnot Q(x)]\land[P(x)\lor Q(x)]$</td><td>Conjunción en 6,7</td></tr>
+                <tr><td>9</td><td>$P(x)\lor[\lnot Q(x)\land Q(x)]$</td><td>Distributiva $\lor$ sobre $\land$</td></tr>
+                <tr><td>10</td><td>$P(x)\lor\text{F}$</td><td>Complemento en 9</td></tr>
+                <tr><td>11</td><td>$P(x)$</td><td>Identidad en 10</td></tr>
+                <tr style="background:rgba(200,240,122,0.06);"><td>12</td><td>$\lnot R(x)\to P(x)$</td><td>Prueba Condicional en 3–11</td></tr>
+                <tr><td>13</td><td>$\forall x:[\lnot R(x)\to P(x)]$</td><td>GU en 12 ($x$ fue arbitraria)</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>`;
