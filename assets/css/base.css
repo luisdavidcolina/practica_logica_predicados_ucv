@@ -98,7 +98,7 @@ body {
 /*   Disposición vertical en cada lateral, separados para no solaparse:
      IZQUIERDA: [⌂ índice]  [◀ prev]
      DERECHA:   [☀ tema]   [▶ next]   [↓ pdf]
-     El gap entre botones es ≥ 12px para evitar solapamiento.             */
+     Offset ±80px desde centro → gap ≥ 34px entre botones.              */
 @media (orientation: landscape) and (max-height: 600px) {
     body { overflow: hidden; height: 100dvh; align-items: center; }
 
@@ -124,14 +124,14 @@ body {
     }
     #nav-controls span { display: none !important; }
 
-    /* Flechas ◀ ▶ — circulares, en el centro vertical de cada lateral */
+    /* Flechas ◀ ▶ — circulares, centradas verticalmente, simétricas */
     #prev-slide, #next-slide {
         pointer-events: all !important;
         background: rgba(11,15,18,0.85) !important;
         border: 1.5px solid rgba(255,255,255,0.25) !important;
         border-radius: 50% !important;
-        width: 46px !important; height: 46px !important;
-        font-size: 20px !important;
+        width: 52px !important; height: 52px !important;
+        font-size: 22px !important;
         flex-shrink: 0 !important;
         display: flex !important;
         align-items: center !important;
@@ -139,20 +139,20 @@ body {
         color: var(--ucv-accent) !important;
         opacity: 0.9 !important;
     }
-    /* Separación horizontal de los bordes de pantalla */
-    #prev-slide { margin-left: 22px !important; }
-    #next-slide { margin-right: 22px !important; }
+    /* Simetría: mismo margen desde cada borde */
+    #prev-slide { margin-left: 18px !important; }
+    #next-slide { margin-right: 18px !important; }
 
-    /* ── Botones de acción: fijos al viewport, uno por lateral ──
-       Se posicionan SIN solaparse con las flechas (±56px desde el centro) */
+    /* ── Botones de acción: fijos al viewport, ±80px desde el centro ──
+       Gap mínimo entre botón acción y flecha: 80 - 26 - 22 = 32px     */
 
-    /* ⌂ Índice: lateral izquierdo, SOBRE la flecha ◀ */
+    /* ⌂ Índice: izquierda, SOBRE ◀ */
     #go-to-index {
         position: fixed !important;
-        left: 22px !important;
+        left: 18px !important;
         top: 50% !important; bottom: auto !important;
-        transform: translateY(calc(-50% - 56px)) !important;
-        width: 42px !important; height: 42px !important;
+        transform: translateY(calc(-50% - 80px)) !important;
+        width: 44px !important; height: 44px !important;
         padding: 0 !important;
         border-radius: 50% !important;
         font-size: 0 !important;
@@ -163,15 +163,15 @@ body {
         background: rgba(11,15,18,0.85) !important;
         border: 1.5px solid rgba(255,255,255,0.2) !important;
     }
-    #go-to-index i { font-size: 16px !important; }
+    #go-to-index i { font-size: 17px !important; }
 
-    /* ☀ Tema: lateral derecho, SOBRE la flecha ▶ */
+    /* ☀ Tema: derecha, SOBRE ▶ */
     #theme-toggle {
         position: fixed !important;
-        right: 22px !important;
+        right: 18px !important;
         top: 50% !important; bottom: auto !important;
-        transform: translateY(calc(-50% - 56px)) !important;
-        width: 42px !important; height: 42px !important;
+        transform: translateY(calc(-50% - 80px)) !important;
+        width: 44px !important; height: 44px !important;
         padding: 0 !important;
         border-radius: 50% !important;
         font-size: 0 !important;
@@ -182,15 +182,15 @@ body {
         background: rgba(11,15,18,0.85) !important;
         border: 1.5px solid rgba(255,255,255,0.2) !important;
     }
-    #theme-toggle i { font-size: 16px !important; }
+    #theme-toggle i { font-size: 17px !important; }
 
-    /* ↓ PDF: lateral derecho, BAJO la flecha ▶ */
+    /* ↓ PDF: derecha, BAJO ▶ */
     #pdf-download {
         position: fixed !important;
-        right: 22px !important;
+        right: 18px !important;
         top: 50% !important; bottom: auto !important;
-        transform: translateY(calc(-50% + 56px)) !important;
-        width: 42px !important; height: 42px !important;
+        transform: translateY(calc(-50% + 80px)) !important;
+        width: 44px !important; height: 44px !important;
         padding: 0 !important;
         border-radius: 50% !important;
         font-size: 0 !important;
@@ -201,7 +201,7 @@ body {
         background: rgba(11,15,18,0.85) !important;
         border: 1.5px solid rgba(255,255,255,0.2) !important;
     }
-    #pdf-download i { font-size: 16px !important; }
+    #pdf-download i { font-size: 17px !important; }
 }
 
 .slide {
