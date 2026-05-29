@@ -25,9 +25,14 @@ export const buildIndexSlides = (sections, perPage = 4) => {
                     title="${label}"
                 ><span class="index-topic-bullet">›</span>${label}</li>`;
 
-        const sectionCard = (section) => {
-            const anchorId = section.slides[0].id;
-            const count    = section.slides.length;
+        const sectionCard = (section, fullWidth = false) => {
+            const anchorId  = section.slides[0].id;
+            const count     = section.slides.length;
+            // Para página de sección única con muchos ítems: lista en 2 columnas
+            const multiCol  = fullWidth && count > 6;
+            const listStyle = multiCol
+                ? 'display:grid; grid-template-columns:1fr 1fr; gap:3px 12px;'
+                : '';
             return `
             <div class="concept-card index-section-card" onclick="window.goToSlideId('${anchorId}')">
                 <div class="index-card-header">
@@ -35,7 +40,7 @@ export const buildIndexSlides = (sections, perPage = 4) => {
                     <span class="index-count">${count}&thinsp;láminas</span>
                 </div>
                 <h3 class="index-card-title">${section.title}</h3>
-                <ul class="index-topic-list">
+                <ul class="index-topic-list" style="${listStyle}">
                     ${section.slides.map(topicItem).join('')}
                 </ul>
             </div>`;
@@ -54,12 +59,15 @@ export const buildIndexSlides = (sections, perPage = 4) => {
             ← flecha izquierda para ver la primera página del índice
         </div>`;
 
+        const isSingle = pageSections.length === 1;
+        const gridCols = isSingle ? '1fr' : 'repeat(2,1fr)';
+
         return `
 <div class="slide" id="${pageIdx === 0 ? 'slide-index' : `slide-index-${pageNum}`}">
     <h2 class="slide-title">Índice de <span>Contenido</span>${pageLabel}</h2>
     <div class="content">
-        <div class="concept-grid" style="grid-template-columns:repeat(2,1fr); gap:11px; margin-bottom:10px;">
-            ${pageSections.map(sectionCard).join('')}
+        <div class="concept-grid" style="grid-template-columns:${gridCols}; gap:11px; margin-bottom:10px;">
+            ${pageSections.map(s => sectionCard(s, isSingle)).join('')}
         </div>
         ${navNote}
     </div>

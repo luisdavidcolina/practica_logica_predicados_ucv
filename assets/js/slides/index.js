@@ -170,7 +170,7 @@ function buildContentSlides(sections) {
 
 export const slides = [
     coverSlide,
-    ...buildIndexSlides(sections, 2),        // 4 páginas de índice (S1-S2 / S3-S4 / S5-S6 / S7-S8)
+    ...buildIndexSlides(sections, 1),        // 8 páginas de índice (una sección por página)
     ...buildContentSlides(sections),
     bibliografiaSlide,
 ];

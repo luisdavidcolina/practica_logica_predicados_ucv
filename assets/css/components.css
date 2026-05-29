@@ -1219,3 +1219,67 @@ th:hover, .case-formula:hover, .formal-code-main:hover, .concept-tag:hover, .cas
     100% { box-shadow: 0 0 0 0   rgba(200,240,122,0);   }
 }
 }
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   Tipografía global en landscape móvil
+   Razón: el slide se escala al ~50% en teléfono (scale ≈ 0.5).
+   Para que el texto visual sea ≥12px, el tamaño base debe ser ≥24px.
+   Este bloque sube ~2× todos los elementos de texto relevantes.
+   NO afecta desktop ni PDF (print usa @page 1280×720, max-height ≥ 720px).
+══════════════════════════════════════════════════════════════════════════════ */
+@media (orientation: landscape) and (max-height: 600px) {
+
+    /* ── Títulos de sección en tarjetas y slides ── */
+    h3 { font-size: 28px !important; }
+    h2.slide-title { font-size: 58px !important; margin-bottom: 16px !important; }
+
+    /* ── example-item (pasos de ejercicios) ── */
+    .example-item .step {
+        font-size: 20px !important;
+        min-width: 72px !important;
+        padding: 4px 10px !important;
+    }
+    .example-item .text { font-size: 22px !important; line-height: 1.5 !important; }
+    .example-item { padding: 6px 4px !important; gap: 8px !important; }
+
+    /* ── Tarjetas ── */
+    .guide-card li   { font-size: 22px !important; line-height: 1.7 !important; }
+    .guide-card p    { font-size: 22px !important; }
+    .case-desc       { font-size: 22px !important; line-height: 1.6 !important; }
+    .concept-card p  { font-size: 22px !important; }
+    .example-side p  { font-size: 22px !important; line-height: 1.6 !important; }
+    .example-side .tag,
+    .example-side .final { font-size: 20px !important; }
+    .case-formula    { font-size: 24px !important; line-height: 2.1 !important; }
+
+    /* ── Tablas formales ── */
+    .formal-table th { font-size: 18px !important; padding: 8px 10px !important; }
+    .formal-table td { font-size: 17px !important; padding: 7px 9px !important; }
+
+    /* ── Tabla de lógica (contraejemplos) ── */
+    .logic-table th, .logic-table td { font-size: 18px !important; padding: 6px 10px !important; }
+
+    /* ── Barras de nota ── */
+    .note-bar { font-size: 21px !important; padding: 10px 16px !important; line-height: 1.6 !important; }
+    .case-intro { font-size: 22px !important; line-height: 1.6 !important; padding: 12px 16px !important; }
+
+    /* ── Etiquetas y badges ── */
+    .case-badge    { font-size: 16px !important; padding: 3px 12px !important; }
+    .concept-tag   { font-size: 17px !important; padding: 4px 14px !important; }
+    .section-tag   { font-size: 16px !important; padding: 5px 16px !important; }
+    .slide-counter { font-size: 16px !important; }
+    .tag           { font-size: 18px !important; padding: 4px 12px !important; }
+    .step          { font-size: 18px !important; }
+
+    /* ── Sandbox ── */
+    .var-toggle   { font-size: 17px !important; padding: 6px 12px !important; }
+    .eval-box     { font-size: 16px !important; }
+    .eval-box .res{ font-size: 24px !important; }
+
+    /* ── Reveal button (solución) ── */
+    .reveal-solution-btn { font-size: 18px !important; padding: 8px 22px !important; }
+
+    /* ── Índice: ya tiene su bloque anterior, refuerzo aquí ── */
+    .index-topic-item { font-size: 24px !important; padding: 5px 10px 5px 24px !important; }
+    .index-card-title { font-size: 32px !important; }
+}
