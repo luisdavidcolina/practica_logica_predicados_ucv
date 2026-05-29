@@ -105,33 +105,49 @@ export const quizEj3AnalisisSlide = String.raw`
 
 export const quizEj3SolucionSlide = String.raw`
 <div class="slide">
-    <h2 class="slide-title">Ejercicio 5: Validez — <span>Quiz II, Ej. 3</span> (Solución)</h2>
+    <h2 class="slide-title">Ejercicio 5: Validez — <span>Quiz II Ej. 3</span> · Pasos 1–7</h2>
     <div class="content">
         <table class="formal-table" style="margin-top:0; font-size:17px;">
             <thead>
-                <tr>
-                    <th style="width:55px;">Paso</th>
-                    <th>Proposición</th>
-                    <th>Justificación</th>
-                </tr>
+                <tr><th style="width:55px;">Paso</th><th>Proposición</th><th>Justificación</th></tr>
             </thead>
             <tbody>
                 <tr><td>1</td><td>$\exists x:\lnot P(x)$</td><td>Premisa 2</td></tr>
-                <tr><td>2</td><td>$\lnot P(a)$</td><td>Particularización existencial (PE) en 1</td></tr>
+                <tr><td>2</td><td>$\lnot P(a)$</td><td>PE para $x=a$ en 1</td></tr>
                 <tr><td>3</td><td>$\forall x:[P(x)\lor Q(x)]$</td><td>Premisa 1</td></tr>
-                <tr><td>4</td><td>$P(a)\lor Q(a)$</td><td>Particularización universal (PU) en 3</td></tr>
-                <tr><td>5</td><td>$Q(a)$</td><td>Silogismo Disyuntivo en 2 y 4</td></tr>
+                <tr><td>4</td><td>$P(a)\lor Q(a)$</td><td>PU para $x=a$ en 3</td></tr>
+                <tr><td>5</td><td>$Q(a)$</td><td>Silogismo Disyuntivo en 2,4</td></tr>
                 <tr><td>6</td><td>$\forall x:[\lnot Q(x)\lor R(x)]$</td><td>Premisa 3</td></tr>
-                <tr><td>7</td><td>$\lnot Q(a)\lor R(a)$</td><td>Particularización universal (PU) en 6</td></tr>
-                <tr><td>8</td><td>$R(a)$</td><td>Silogismo Disyuntivo en 5 y 7</td></tr>
+                <tr><td>7</td><td>$\lnot Q(a)\lor R(a)$</td><td>PU para $x=a$ en 6</td></tr>
+            </tbody>
+        </table>
+        <div class="note-bar" style="margin-top:10px; font-size:15px;">
+            Establecido: $Q(a)$ (paso 5) y $\lnot Q(a)\lor R(a)$ (paso 7). Continúa en la siguiente lámina →
+        </div>
+    </div>
+</div>`;
+
+export const quizEj3SolucionSlide2 = String.raw`
+<div class="slide">
+    <h2 class="slide-title">Ejercicio 5: Validez — <span>Quiz II Ej. 3</span> · Pasos 8–12</h2>
+    <div class="content">
+        <div class="note-bar" style="margin-bottom:10px; font-size:15px;">
+            Contexto: (5) $Q(a)$ · (7) $\lnot Q(a)\lor R(a)$ · (Premisa 4) $\forall x:[S(x)\to\lnot R(x)]$
+        </div>
+        <table class="formal-table" style="margin-top:0; font-size:17px;">
+            <thead>
+                <tr><th style="width:55px;">Paso</th><th>Proposición</th><th>Justificación</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>8</td><td>$R(a)$</td><td>Silogismo Disyuntivo en 5,7</td></tr>
                 <tr><td>9</td><td>$\forall x:[S(x)\to\lnot R(x)]$</td><td>Premisa 4</td></tr>
-                <tr><td>10</td><td>$S(a)\to\lnot R(a)$</td><td>Particularización universal (PU) en 9</td></tr>
-                <tr><td>11</td><td>$\lnot S(a)$</td><td>Modus Tollendo Tollens en 8 y 10</td></tr>
-                <tr><td>12</td><td>$\exists x:\lnot S(x)$</td><td>Generalización existencial (GE) en 11</td></tr>
+                <tr><td>10</td><td>$S(a)\to\lnot R(a)$</td><td>PU para $x=a$ en 9</td></tr>
+                <tr><td>11</td><td>$\lnot S(a)$</td><td>Modus Tollens en 8,10</td></tr>
+                <tr><td>12</td><td>$\exists x:\lnot S(x)$</td><td>GE en 11</td></tr>
             </tbody>
         </table>
         <div class="note-bar" style="margin-top:10px;">
-            <strong>El argumento es VÁLIDO.</strong> Elaborado por Luisdavid Colina / Profesora Yuliana Fernández / Sección C7 / Quiz II / 12 Dic 2025.
+            <strong>Argumento VÁLIDO.</strong> Quiz II Ej.3 — Luisdavid Colina / Prof. Yuliana Fernández / C7 / 12 Dic 2025.
         </div>
     </div>
 </div>`;

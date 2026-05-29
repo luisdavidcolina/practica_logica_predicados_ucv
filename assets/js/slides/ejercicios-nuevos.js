@@ -262,39 +262,55 @@ export const parcial2Ej5AnalisisSlide = String.raw`
 
 export const parcial2Ej5SolucionSlide = String.raw`
 <div class="slide">
-    <h2 class="slide-title">Ejercicio 12: Validez — <span>Solución Completa (18 pasos)</span></h2>
+    <h2 class="slide-title">Ejercicio 12: Validez — <span>Solución Pasos 1–8</span></h2>
     <div class="content">
-        <table class="formal-table" style="margin-top:0; font-size:14px;">
+        <table class="formal-table" style="margin-top:0; font-size:15px;">
             <thead>
-                <tr>
-                    <th style="width:45px;">Paso</th>
-                    <th>Proposición</th>
-                    <th>Justificación</th>
-                </tr>
+                <tr><th style="width:45px;">Paso</th><th>Proposición</th><th>Justificación</th></tr>
             </thead>
             <tbody>
                 <tr><td>1</td><td>$\exists x:[Q(x)\land\lnot S(x)]$</td><td>Premisa 1</td></tr>
                 <tr><td>2</td><td>$\forall x:[P(x)\to S(x)]$</td><td>Premisa 2</td></tr>
                 <tr><td>3</td><td>$\exists x:[P(x)\lor S(x)]$</td><td>Premisa 3</td></tr>
-                <tr style="background:rgba(200,240,122,0.06);"><td>4</td><td>$Q(a)\land\lnot S(a)$</td><td>PE para x=a en 1 <strong style="color:var(--ucv-accent);">(1.ª constante)</strong></td></tr>
+                <tr style="background:rgba(200,240,122,0.06);"><td>4</td><td>$Q(a)\land\lnot S(a)$</td><td>PE para $x=a$ en 1 — <strong style="color:var(--ucv-accent);">1.ª constante</strong></td></tr>
                 <tr><td>5</td><td>$\lnot S(a)$</td><td>Simplificación en 4</td></tr>
-                <tr><td>6</td><td>$P(a)\to S(a)$</td><td>PU para x=a en 2</td></tr>
-                <tr><td>7</td><td>$\lnot P(a)$</td><td>Modus Tollendo Tollens en 5 y 6</td></tr>
-                <tr><td>8</td><td>$\exists x:\lnot P(x)$</td><td>Generalización existencial (GE) en 7</td></tr>
-                <tr style="background:rgba(200,240,122,0.06);"><td>9</td><td>$P(b)\lor S(b)$</td><td>PE para x=b en 3 <strong style="color:var(--ucv-accent);">(2.ª constante, b≠a)</strong></td></tr>
-                <tr><td>10</td><td>$\lnot S(b)\to P(b)$</td><td>Conmutativa para ∨ y EPI en 9</td></tr>
-                <tr><td>11</td><td>$P(b)\to S(b)$</td><td>PU para x=b en 2</td></tr>
-                <tr><td>12</td><td>$\lnot S(b)\to S(b)$</td><td>Silogismo Hipotético entre 10 y 11</td></tr>
+                <tr><td>6</td><td>$P(a)\to S(a)$</td><td>PU para $x=a$ en 2</td></tr>
+                <tr><td>7</td><td>$\lnot P(a)$</td><td>Modus Tollens en 5,6</td></tr>
+                <tr><td>8</td><td>$\exists x:\lnot P(x)$</td><td>GE en 7</td></tr>
+            </tbody>
+        </table>
+        <div class="note-bar" style="margin-top:10px; font-size:15px;">
+            Primera rama completa: $\exists x:\lnot P(x)$ derivado. Ahora segunda PE con $b\neq a$. Continúa →
+        </div>
+    </div>
+</div>`;
+
+export const parcial2Ej5SolucionSlide2 = String.raw`
+<div class="slide">
+    <h2 class="slide-title">Ejercicio 12: Validez — <span>Solución Pasos 9–18</span></h2>
+    <div class="content">
+        <div class="note-bar" style="margin-bottom:10px; font-size:15px;">
+            Contexto: (8) $\exists x:\lnot P(x)$ · (Premisa 2) $\forall x:[P(x)\to S(x)]$ — segunda rama con constante $b\neq a$
+        </div>
+        <table class="formal-table" style="margin-top:0; font-size:15px;">
+            <thead>
+                <tr><th style="width:45px;">Paso</th><th>Proposición</th><th>Justificación</th></tr>
+            </thead>
+            <tbody>
+                <tr style="background:rgba(200,240,122,0.06);"><td>9</td><td>$P(b)\lor S(b)$</td><td>PE para $x=b$ en 3 — <strong style="color:var(--ucv-accent);">2.ª constante, $b\neq a$</strong></td></tr>
+                <tr><td>10</td><td>$\lnot S(b)\to P(b)$</td><td>Conmutativa ∨ y EPI en 9</td></tr>
+                <tr><td>11</td><td>$P(b)\to S(b)$</td><td>PU para $x=b$ en 2</td></tr>
+                <tr><td>12</td><td>$\lnot S(b)\to S(b)$</td><td>Silogismo Hipotético entre 10,11</td></tr>
                 <tr><td>13</td><td>$S(b)\lor S(b)$</td><td>EPI en 12</td></tr>
-                <tr><td>14</td><td>$S(b)$</td><td>Idempotencia para ∨ en 13</td></tr>
-                <tr><td>15</td><td>$\exists x:S(x)$</td><td>Generalización existencial (GE) en 14</td></tr>
-                <tr><td>16</td><td>$\exists x:S(x)\land\exists x:\lnot P(x)$</td><td>Conjunción entre 15 y 8</td></tr>
-                <tr><td>17</td><td>$\lnot[\lnot\exists x:S(x)\lor\lnot\exists x:\lnot P(x)]$</td><td>De Morgan para ∧ y doble negación en 16</td></tr>
+                <tr><td>14</td><td>$S(b)$</td><td>Idempotencia ∨ en 13</td></tr>
+                <tr><td>15</td><td>$\exists x:S(x)$</td><td>GE en 14</td></tr>
+                <tr><td>16</td><td>$\exists x:S(x)\land\exists x:\lnot P(x)$</td><td>Conjunción entre 15,8</td></tr>
+                <tr><td>17</td><td>$\lnot[\lnot\exists x:S(x)\lor\lnot\exists x:\lnot P(x)]$</td><td>De Morgan ∧ y doble negación en 16</td></tr>
                 <tr><td>18</td><td>$\lnot[\exists x:S(x)\to\forall x:P(x)]$</td><td>EPI y negación de ∀ en 17</td></tr>
             </tbody>
         </table>
         <div class="note-bar" style="margin-top:8px; font-size:15px;">
-            <strong>El argumento es VÁLIDO.</strong> Comentario: los pasos 4 y 9 son las dos PE con constantes diferentes $a$ y $b$. Si se usara la misma constante, el argumento sería incorrecto.
+            <strong>Argumento VÁLIDO.</strong> PE(a) y PE(b) con constantes distintas — error fatal si se usa la misma.
         </div>
     </div>
 </div>`;

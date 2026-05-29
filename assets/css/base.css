@@ -95,11 +95,14 @@ body {
 }
 
 /* ── Landscape móvil: botones en los laterales libres (~92px c/u) ─────────── */
+/*   Disposición vertical en cada lateral, separados para no solaparse:
+     IZQUIERDA: [⌂ índice]  [◀ prev]
+     DERECHA:   [☀ tema]   [▶ next]   [↓ pdf]
+     El gap entre botones es ≥ 12px para evitar solapamiento.             */
 @media (orientation: landscape) and (max-height: 600px) {
     body { overflow: hidden; height: 100dvh; align-items: center; }
 
     /* ── Nav pill → contenedor transparente de pantalla completa ── */
-    /* Los dos botones de flecha van a los extremos izq/der, centrados verticalmente */
     #nav-controls {
         position: fixed !important;
         inset: 0 !important;
@@ -121,68 +124,84 @@ body {
     }
     #nav-controls span { display: none !important; }
 
-    /* Flechas: círculos flotantes en cada lateral */
+    /* Flechas ◀ ▶ — circulares, en el centro vertical de cada lateral */
     #prev-slide, #next-slide {
         pointer-events: all !important;
-        background: rgba(11,15,18,0.82) !important;
-        border: 1px solid rgba(255,255,255,0.22) !important;
+        background: rgba(11,15,18,0.85) !important;
+        border: 1.5px solid rgba(255,255,255,0.25) !important;
         border-radius: 50% !important;
-        width: 48px !important; height: 48px !important;
+        width: 46px !important; height: 46px !important;
         font-size: 20px !important;
         flex-shrink: 0 !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
         color: var(--ucv-accent) !important;
-        opacity: 0.85 !important;
+        opacity: 0.9 !important;
     }
-    #prev-slide { margin-left: 8px !important; }
-    #next-slide { margin-right: 8px !important; }
+    /* Separación horizontal de los bordes de pantalla */
+    #prev-slide { margin-left: 22px !important; }
+    #next-slide { margin-right: 22px !important; }
 
-    /* ── Botones de acción: apilados verticalmente en los laterales ── */
-    /* Lado izquierdo: Índice */
+    /* ── Botones de acción: fijos al viewport, uno por lateral ──
+       Se posicionan SIN solaparse con las flechas (±56px desde el centro) */
+
+    /* ⌂ Índice: lateral izquierdo, SOBRE la flecha ◀ */
     #go-to-index {
         position: fixed !important;
-        left: 8px !important;
+        left: 22px !important;
         top: 50% !important; bottom: auto !important;
-        transform: translateY(-50%) !important;
-        padding: 9px 11px !important;
+        transform: translateY(calc(-50% - 56px)) !important;
+        width: 42px !important; height: 42px !important;
+        padding: 0 !important;
         border-radius: 50% !important;
         font-size: 0 !important;
-        opacity: 0.82 !important;
-        background: rgba(11,15,18,0.82) !important;
-        border: 1px solid rgba(255,255,255,0.18) !important;
+        opacity: 0.85 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background: rgba(11,15,18,0.85) !important;
+        border: 1.5px solid rgba(255,255,255,0.2) !important;
     }
-    #go-to-index i { font-size: 17px !important; }
+    #go-to-index i { font-size: 16px !important; }
 
-    /* Lado derecho: Tema (arriba) + PDF (abajo) */
+    /* ☀ Tema: lateral derecho, SOBRE la flecha ▶ */
     #theme-toggle {
         position: fixed !important;
-        right: 8px !important;
+        right: 22px !important;
         top: 50% !important; bottom: auto !important;
-        transform: translateY(calc(-50% - 32px)) !important;
-        padding: 9px 11px !important;
+        transform: translateY(calc(-50% - 56px)) !important;
+        width: 42px !important; height: 42px !important;
+        padding: 0 !important;
         border-radius: 50% !important;
         font-size: 0 !important;
-        opacity: 0.82 !important;
-        background: rgba(11,15,18,0.82) !important;
-        border: 1px solid rgba(255,255,255,0.18) !important;
+        opacity: 0.85 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background: rgba(11,15,18,0.85) !important;
+        border: 1.5px solid rgba(255,255,255,0.2) !important;
     }
-    #theme-toggle i { font-size: 17px !important; }
+    #theme-toggle i { font-size: 16px !important; }
 
+    /* ↓ PDF: lateral derecho, BAJO la flecha ▶ */
     #pdf-download {
         position: fixed !important;
-        right: 8px !important;
+        right: 22px !important;
         top: 50% !important; bottom: auto !important;
-        transform: translateY(calc(-50% + 32px)) !important;
-        padding: 9px 11px !important;
+        transform: translateY(calc(-50% + 56px)) !important;
+        width: 42px !important; height: 42px !important;
+        padding: 0 !important;
         border-radius: 50% !important;
         font-size: 0 !important;
-        opacity: 0.82 !important;
-        background: rgba(11,15,18,0.82) !important;
-        border: 1px solid rgba(255,255,255,0.18) !important;
+        opacity: 0.85 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background: rgba(11,15,18,0.85) !important;
+        border: 1.5px solid rgba(255,255,255,0.2) !important;
     }
-    #pdf-download i { font-size: 17px !important; }
+    #pdf-download i { font-size: 16px !important; }
 }
 
 .slide {
@@ -347,7 +366,10 @@ html[data-theme="light"] .slide::before {
         display: block !important;
     }
 
-    /* Cada wrapper = una página — !important sobrescribe el display:none inline */
+    /* Cada wrapper = una página.
+       Usamos break-BEFORE en lugar de break-after para evitar la página en blanco
+       al final causada por que el indexUI (dentro de slides-root) impide que
+       :last-child coincida con el último slide-wrapper. */
     .slide-wrapper,
     .slide-wrapper[style*="display: none"],
     .slide-wrapper[style*="display:none"] {
@@ -355,13 +377,22 @@ html[data-theme="light"] .slide::before {
         width: 1280px !important;
         height: 720px !important;
         overflow: hidden !important;
-        page-break-after: always;
-        break-after: page;
+        page-break-before: always;
+        break-before: page;
     }
 
-    .slide-wrapper:last-child {
-        page-break-after: avoid;
-        break-after: avoid;
+    /* El primer slide nunca lleva salto antes */
+    .slide-wrapper:first-child {
+        page-break-before: avoid;
+        break-before: avoid;
+    }
+
+    /* Cualquier elemento dentro de slides-root que no sea un wrapper
+       (p.ej. el botón de índice) queda fuera del flujo de impresión */
+    #slides-root > :not(.slide-wrapper) {
+        display: none !important;
+        height: 0 !important;
+        overflow: hidden !important;
     }
 
     .slide {

@@ -133,15 +133,11 @@ export const parcialComplejoBSlide = String.raw`
 
 export const parcialComplejoSolucionSlide = String.raw`
 <div class="slide">
-    <h2 class="slide-title">Ejercicio 8: Validez Compleja — <span>Solución Completa</span></h2>
+    <h2 class="slide-title">Ejercicio 8: Validez Compleja — <span>Solución Pasos 1–11</span></h2>
     <div class="content">
-        <table class="formal-table" style="margin-top:0; font-size:15px;">
+        <table class="formal-table" style="margin-top:0; font-size:15.5px;">
             <thead>
-                <tr>
-                    <th style="width:48px;">Paso</th>
-                    <th>Proposición</th>
-                    <th>Justificación</th>
-                </tr>
+                <tr><th style="width:48px;">Paso</th><th>Proposición</th><th>Justificación</th></tr>
             </thead>
             <tbody>
                 <tr><td>1</td><td>$\forall x:[A(x)\lor\lnot R(x)]$</td><td>Premisa 1</td></tr>
@@ -149,24 +145,47 @@ export const parcialComplejoSolucionSlide = String.raw`
                 <tr><td>3</td><td>$\forall x:[\lnot U(x)\to\lnot A(x)]$</td><td>Premisa 3</td></tr>
                 <tr><td>4</td><td>$\exists x:[W(x)\land\lnot[M(x)\lor N(x)]]$</td><td>Premisa 4</td></tr>
                 <tr><td>5</td><td>$\forall x:[\lnot T(x)\to R(x)]$</td><td>Premisa 5</td></tr>
-                <tr><td>6</td><td>$W(a)\land\lnot[M(a)\lor N(a)]$</td><td>PE para x=a en 4</td></tr>
-                <tr><td>7</td><td>$\lnot M(a)\land\lnot N(a)$</td><td>Simplificación y De Morgan para ∨ en 6</td></tr>
+                <tr><td>6</td><td>$W(a)\land\lnot[M(a)\lor N(a)]$</td><td>PE para $x=a$ en 4</td></tr>
+                <tr><td>7</td><td>$\lnot M(a)\land\lnot N(a)$</td><td>Simp. y De Morgan en 6</td></tr>
                 <tr><td>8</td><td>$\lnot M(a)$</td><td>Simplificación en 7</td></tr>
-                <tr><td>9</td><td>$[G(a)\land\lnot U(a)]\lor M(a)$</td><td>PU para x=a en 2</td></tr>
-                <tr><td>10</td><td>$[G(a)\lor M(a)]\land[\lnot U(a)\lor M(a)]$</td><td>Distributiva para ∨ en 9</td></tr>
-                <tr><td>11</td><td>$U(a)\to M(a)$</td><td>Simplificación de 10 y EPI</td></tr>
-                <tr><td>12</td><td>$\lnot U(a)$</td><td>Modus Tollendo Tollens entre 8 y 11</td></tr>
-                <tr><td>13</td><td>$\lnot U(a)\to\lnot A(a)$</td><td>PU para x=a en 3</td></tr>
-                <tr><td>14</td><td>$\lnot A(a)$</td><td>Modus Ponendo Ponens entre 12 y 13</td></tr>
-                <tr><td>15</td><td>$A(a)\lor\lnot R(a)$</td><td>PU para x=a en 1</td></tr>
-                <tr><td>16</td><td>$R(a)\to A(a)$</td><td>Conmutativa para ∨ y EPI en 15</td></tr>
-                <tr><td>17</td><td>$\lnot R(a)$</td><td>Modus Tollendo Tollens entre 14 y 16</td></tr>
-                <tr><td>18</td><td>$\lnot T(a)\to R(a)$</td><td>PU para x=a en 5</td></tr>
-                <tr><td>19</td><td>$T(a)$</td><td>Modus Tollendo Tollens entre 17 y 18 y doble negación</td></tr>
-                <tr><td>20</td><td>$T(a)\land\lnot U(a)$</td><td>Conjunción entre 19 y 12</td></tr>
-                <tr><td>21</td><td>$\exists x:[T(x)\land\lnot U(x)]$</td><td>Generalización existencial (GE) en 20</td></tr>
+                <tr><td>9</td><td>$[G(a)\land\lnot U(a)]\lor M(a)$</td><td>PU para $x=a$ en 2</td></tr>
+                <tr><td>10</td><td>$[G(a)\lor M(a)]\land[\lnot U(a)\lor M(a)]$</td><td>Distributiva ∨ en 9</td></tr>
+                <tr><td>11</td><td>$U(a)\to M(a)$</td><td>Simp. en 10 y EPI</td></tr>
             </tbody>
         </table>
+        <div class="note-bar" style="margin-top:10px; font-size:15px;">
+            Establecido: $\lnot M(a)$ (8) y $U(a)\to M(a)$ (11). Clave: aplicar MT → $\lnot U(a)$. Continúa →
+        </div>
+    </div>
+</div>`;
+
+export const parcialComplejoSolucionSlide2 = String.raw`
+<div class="slide">
+    <h2 class="slide-title">Ejercicio 8: Validez Compleja — <span>Solución Pasos 12–21</span></h2>
+    <div class="content">
+        <div class="note-bar" style="margin-bottom:10px; font-size:15px;">
+            Contexto: (8) $\lnot M(a)$ · (11) $U(a)\to M(a)$ · (Prems. 1,3,5 aún disponibles)
+        </div>
+        <table class="formal-table" style="margin-top:0; font-size:15.5px;">
+            <thead>
+                <tr><th style="width:48px;">Paso</th><th>Proposición</th><th>Justificación</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>12</td><td>$\lnot U(a)$</td><td>Modus Tollens entre 8 y 11</td></tr>
+                <tr><td>13</td><td>$\lnot U(a)\to\lnot A(a)$</td><td>PU para $x=a$ en 3</td></tr>
+                <tr><td>14</td><td>$\lnot A(a)$</td><td>Modus Ponens entre 12 y 13</td></tr>
+                <tr><td>15</td><td>$A(a)\lor\lnot R(a)$</td><td>PU para $x=a$ en 1</td></tr>
+                <tr><td>16</td><td>$R(a)\to A(a)$</td><td>Conmutativa ∨ y EPI en 15</td></tr>
+                <tr><td>17</td><td>$\lnot R(a)$</td><td>Modus Tollens entre 14 y 16</td></tr>
+                <tr><td>18</td><td>$\lnot T(a)\to R(a)$</td><td>PU para $x=a$ en 5</td></tr>
+                <tr><td>19</td><td>$T(a)$</td><td>Modus Tollens entre 17,18 y doble negación</td></tr>
+                <tr><td>20</td><td>$T(a)\land\lnot U(a)$</td><td>Conjunción entre 19 y 12</td></tr>
+                <tr><td>21</td><td>$\exists x:[T(x)\land\lnot U(x)]$</td><td>GE en 20</td></tr>
+            </tbody>
+        </table>
+        <div class="note-bar" style="margin-top:10px;">
+            <strong>Argumento VÁLIDO.</strong> Parcial II Sem. I-2025 — Grupo docente MDI.
+        </div>
     </div>
 </div>`;
 
