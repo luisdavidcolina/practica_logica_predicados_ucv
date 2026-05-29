@@ -94,11 +94,11 @@ body {
     .slide       { height: 860px; }
 }
 
-/* ── Landscape móvil: botones en los laterales libres (~92px c/u) ─────────── */
-/*   Disposición vertical en cada lateral, separados para no solaparse:
-     IZQUIERDA: [⌂ índice]  [◀ prev]
-     DERECHA:   [☀ tema]   [▶ next]   [↓ pdf]
-     Offset ±80px desde centro → gap ≥ 34px entre botones.              */
+/* ── Landscape móvil: botones en esquinas + flechas centradas ───────────────
+     ◀ ▶  → centradas verticalmente en cada lateral (simétricas)
+     ⌂    → esquina superior-izquierda
+     ⚙    → esquina superior-derecha
+     PDF  → esquina inferior-derecha                                         */
 @media (orientation: landscape) and (max-height: 600px) {
     body { overflow: hidden; height: 100dvh; align-items: center; }
 
@@ -124,7 +124,7 @@ body {
     }
     #nav-controls span { display: none !important; }
 
-    /* Flechas ◀ ▶ — circulares, centradas verticalmente, simétricas */
+    /* ◀ ▶ — circulares, centradas verticalmente, simétricas */
     #prev-slide, #next-slide {
         pointer-events: all !important;
         background: rgba(11,15,18,0.85) !important;
@@ -139,19 +139,15 @@ body {
         color: var(--ucv-accent) !important;
         opacity: 0.9 !important;
     }
-    /* Simetría: mismo margen desde cada borde */
-    #prev-slide { margin-left: 18px !important; }
-    #next-slide { margin-right: 18px !important; }
+    #prev-slide { margin-left: 14px !important; }
+    #next-slide { margin-right: 14px !important; }
 
-    /* ── Botones de acción: fijos al viewport, ±80px desde el centro ──
-       Gap mínimo entre botón acción y flecha: 80 - 26 - 22 = 32px     */
-
-    /* ⌂ Índice: izquierda, SOBRE ◀ */
+    /* ⌂ Índice: esquina superior-izquierda */
     #go-to-index {
         position: fixed !important;
-        left: 18px !important;
-        top: 50% !important; bottom: auto !important;
-        transform: translateY(calc(-50% - 80px)) !important;
+        top: 14px !important; bottom: auto !important;
+        left: 14px !important; right: auto !important;
+        transform: none !important;
         width: 44px !important; height: 44px !important;
         padding: 0 !important;
         border-radius: 50% !important;
@@ -165,12 +161,12 @@ body {
     }
     #go-to-index i { font-size: 17px !important; }
 
-    /* ☀ Tema: derecha, SOBRE ▶ */
+    /* ⚙ Tema: esquina superior-derecha */
     #theme-toggle {
         position: fixed !important;
-        right: 18px !important;
-        top: 50% !important; bottom: auto !important;
-        transform: translateY(calc(-50% - 80px)) !important;
+        top: 14px !important; bottom: auto !important;
+        right: 14px !important; left: auto !important;
+        transform: none !important;
         width: 44px !important; height: 44px !important;
         padding: 0 !important;
         border-radius: 50% !important;
@@ -184,12 +180,12 @@ body {
     }
     #theme-toggle i { font-size: 17px !important; }
 
-    /* ↓ PDF: derecha, BAJO ▶ */
+    /* PDF: esquina inferior-derecha */
     #pdf-download {
         position: fixed !important;
-        right: 18px !important;
-        top: 50% !important; bottom: auto !important;
-        transform: translateY(calc(-50% + 80px)) !important;
+        bottom: 14px !important; top: auto !important;
+        right: 14px !important; left: auto !important;
+        transform: none !important;
         width: 44px !important; height: 44px !important;
         padding: 0 !important;
         border-radius: 50% !important;

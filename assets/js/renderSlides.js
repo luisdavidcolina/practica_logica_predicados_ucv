@@ -335,11 +335,11 @@ if (root) {
     // Index Button
     const indexUI = document.createElement('div');
     indexUI.innerHTML = `
-        <button id="go-to-index" aria-label="Volver al índice" style="position: absolute; bottom: 40px; left: 80px; background: rgba(11,15,18,0.8); border: 1px solid rgba(255,255,255,0.1); color: var(--text-dim); font-size: 16px; padding: 12px 20px; border-radius: 30px; cursor: pointer; display: flex; align-items: center; gap: 8px; z-index: 1000; backdrop-filter: blur(8px); opacity: 0.15; transition: all 0.2s;">
+        <button id="go-to-index" aria-label="Volver al índice" style="position: fixed; bottom: 40px; left: 80px; background: rgba(11,15,18,0.8); border: 1px solid rgba(255,255,255,0.1); color: var(--text-dim); font-size: 16px; padding: 12px 20px; border-radius: 30px; cursor: pointer; display: flex; align-items: center; gap: 8px; z-index: 1000; backdrop-filter: blur(8px); opacity: 0.15; transition: all 0.2s;">
             <i class="fas fa-home"></i> Índice
         </button>
     `;
-    root.appendChild(indexUI);
+    document.body.appendChild(indexUI);
 
     const btnPrev = document.getElementById('prev-slide');
     const btnNext = document.getElementById('next-slide');
