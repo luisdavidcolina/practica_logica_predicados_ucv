@@ -94,40 +94,95 @@ body {
     .slide       { height: 860px; }
 }
 
-/* ── Landscape móvil: cabe en pantalla sin scroll ─────────────────────────── */
+/* ── Landscape móvil: botones en los laterales libres (~92px c/u) ─────────── */
 @media (orientation: landscape) and (max-height: 600px) {
-    body {
-        overflow: hidden;
-        height: 100dvh;
-        align-items: center;
-    }
+    body { overflow: hidden; height: 100dvh; align-items: center; }
 
-    /* Nav central: compacto, solo flechas */
+    /* ── Nav pill → contenedor transparente de pantalla completa ── */
+    /* Los dos botones de flecha van a los extremos izq/der, centrados verticalmente */
     #nav-controls {
-        bottom: 6px !important;
-        padding: 4px 12px !important;
-        gap: 10px !important;
+        position: fixed !important;
+        inset: 0 !important;
+        left: 0 !important; right: 0 !important;
+        top: 0 !important; bottom: 0 !important;
+        transform: none !important;
+        background: transparent !important;
+        border: none !important;
+        backdrop-filter: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+        gap: 0 !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        pointer-events: none !important;
+        opacity: 1 !important;
+        z-index: 1000 !important;
     }
-    /* Ocultar el texto "Navegación ← →" en landscape pequeño */
     #nav-controls span { display: none !important; }
 
-    /* Botones laterales: fijos al viewport, solo ícono */
-    #go-to-index,
-    #theme-toggle,
+    /* Flechas: círculos flotantes en cada lateral */
+    #prev-slide, #next-slide {
+        pointer-events: all !important;
+        background: rgba(11,15,18,0.82) !important;
+        border: 1px solid rgba(255,255,255,0.22) !important;
+        border-radius: 50% !important;
+        width: 48px !important; height: 48px !important;
+        font-size: 20px !important;
+        flex-shrink: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        color: var(--ucv-accent) !important;
+        opacity: 0.85 !important;
+    }
+    #prev-slide { margin-left: 8px !important; }
+    #next-slide { margin-right: 8px !important; }
+
+    /* ── Botones de acción: apilados verticalmente en los laterales ── */
+    /* Lado izquierdo: Índice */
+    #go-to-index {
+        position: fixed !important;
+        left: 8px !important;
+        top: 50% !important; bottom: auto !important;
+        transform: translateY(-50%) !important;
+        padding: 9px 11px !important;
+        border-radius: 50% !important;
+        font-size: 0 !important;
+        opacity: 0.82 !important;
+        background: rgba(11,15,18,0.82) !important;
+        border: 1px solid rgba(255,255,255,0.18) !important;
+    }
+    #go-to-index i { font-size: 17px !important; }
+
+    /* Lado derecho: Tema (arriba) + PDF (abajo) */
+    #theme-toggle {
+        position: fixed !important;
+        right: 8px !important;
+        top: 50% !important; bottom: auto !important;
+        transform: translateY(calc(-50% - 32px)) !important;
+        padding: 9px 11px !important;
+        border-radius: 50% !important;
+        font-size: 0 !important;
+        opacity: 0.82 !important;
+        background: rgba(11,15,18,0.82) !important;
+        border: 1px solid rgba(255,255,255,0.18) !important;
+    }
+    #theme-toggle i { font-size: 17px !important; }
+
     #pdf-download {
         position: fixed !important;
-        bottom: 6px !important;
-        padding: 7px 10px !important;
-        border-radius: 18px !important;
-        font-size: 0 !important;   /* oculta el texto */
+        right: 8px !important;
+        top: 50% !important; bottom: auto !important;
+        transform: translateY(calc(-50% + 32px)) !important;
+        padding: 9px 11px !important;
+        border-radius: 50% !important;
+        font-size: 0 !important;
+        opacity: 0.82 !important;
+        background: rgba(11,15,18,0.82) !important;
+        border: 1px solid rgba(255,255,255,0.18) !important;
     }
-    #go-to-index i,
-    #theme-toggle i,
-    #pdf-download i { font-size: 15px !important; }
-
-    #go-to-index  { left: 8px !important; }
-    #pdf-download { right: 52px !important; }
-    #theme-toggle { right: 8px !important; }
+    #pdf-download i { font-size: 17px !important; }
 }
 
 .slide {
@@ -247,11 +302,12 @@ html[data-theme="light"] .slide::before {
 
     body { margin: 0; padding: 0; background: #0b0f12 !important; overflow: visible !important; }
 
-    /* Ocultar chrome de navegación y botones de revelar */
+    /* Ocultar chrome de navegación, botones y overlay de rotación */
     #nav-controls,
     #go-to-index,
     #theme-toggle,
     #pdf-download,
+    #rotate-overlay,
     .slide-counter,
     .inline-reveal-container,
     .reveal-eye-btn-mini,
@@ -267,6 +323,16 @@ html[data-theme="light"] .slide::before {
     /* Mostrar secciones de respuesta ocultas */
     .answer-solution {
         display: grid !important;
+    }
+
+    /* Overlay de rotación: totalmente fuera del print */
+    #rotate-overlay {
+        display: none !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+        position: static !important;
+        height: 0 !important;
+        overflow: hidden !important;
     }
 
     /* Ocultar botón "Ver solución" */
