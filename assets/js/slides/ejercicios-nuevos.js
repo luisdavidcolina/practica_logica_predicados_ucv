@@ -654,52 +654,68 @@ export const p2Ej9ValidezBSlide = String.raw`
 
 export const p2Ej10InvalidezASlide = String.raw`
 <div class="slide">
-    <h2 class="slide-title">Ejercicio 10: <span>Invalidez</span> — Ítem a</h2>
+    <h2 class="slide-title">Ejercicio 10: <span>Invalidez</span> — Ítem a · Encuentra el Contraejemplo</h2>
     <div class="content">
-        <div class="example-panel" style="margin-top:0;">
-            <div class="example-card" style="flex:1;">
-                <h3>Argumento</h3>
-                <div class="case-formula" style="font-size:18px; line-height:2.2; text-align:left; padding:12px 16px;">
+        <div class="example-panel" style="margin-top:0; grid-template-columns:1.3fr 0.7fr;">
+            <div class="example-card">
+                <h3>Argumento — $\mathbb{U}=\{a\}$ (universo unitario)</h3>
+                <div class="case-formula" style="font-size:17px; line-height:2.1; text-align:left; padding:8px 14px;">
                     P1: $\forall x:[P(x)\lor R(x)]$<br>
                     P2: $\forall x:[P(x)\land S(x)]$<br>
                     $\therefore\ \forall x:[R(x)\land S(x)]$
                 </div>
             </div>
             <div class="example-side">
-                <span class="tag">Estrategia</span>
-                <p>Hacer la <strong>conclusión F</strong> primero: necesitamos $R(a)=\text{F}$ (o $S(a)=\text{F}$). Verificar si P1 y P2 pueden ser V simultáneamente.</p>
-                <p>P2 exige $P(a)=\text{V}$ y $S(a)=\text{V}$. Con $P(a)=\text{V}$, P1 se satisface sin importar $R(a)$. Tomamos $R(a)=\text{F}$.</p>
+                <span class="tag">Tu misión</span>
+                <p style="font-size:13px; line-height:1.7;">Asigna V/F a $P(a)$, $R(a)$, $S(a)$ hasta lograr <strong style="color:var(--ucv-accent);">P1=P2=V</strong> y <strong style="color:#ff9a9a;">C=F</strong>.</p>
+                <p style="font-size:12px; color:var(--text-dim); margin-top:6px;">Pista: ¿qué pasa si $R(a)=\text{F}$ y $P(a)=\text{V}$?</p>
             </div>
         </div>
-        <div class="guide-grid" style="margin-top:10px; margin-bottom:10px;">
-            <div class="guide-card" style="min-height:0;">
-                <h3 style="font-size:17px;">Con $\mathbb{U}=\{a\}$, $P(a)=\text{V}$, $R(a)=\text{F}$, $S(a)=\text{V}$</h3>
-                <ul>
-                    <li>P1: $P(a)\lor R(a)=\text{V}\lor\text{F}=\text{V}$ ✓</li>
-                    <li>P2: $P(a)\land S(a)=\text{V}\land\text{V}=\text{V}$ ✓</li>
-                    <li>C: $R(a)\land S(a)=\text{F}\land\text{V}=\text{F}$ ← <strong style="color:#ff9a9a;">premisas V, conclusión F</strong></li>
-                </ul>
+        <div class="sandbox-panel" id="sandbox_inv2" style="margin-top:10px; background:linear-gradient(180deg,rgba(18,24,29,0.98),rgba(11,15,18,0.98)); border:1px solid rgba(200,240,122,0.3); border-radius:10px; padding:10px 14px;">
+            <div style="text-align:center; color:var(--ucv-accent); font-size:13px; font-weight:700; margin-bottom:7px;">⚡ Simulador de Valores de Verdad — $\mathbb{U}=\{a\}$</div>
+            <div style="display:flex; justify-content:center; gap:12px; margin-bottom:8px;">
+                <button class="var-toggle" data-var="pa" data-val="?" style="font-size:14px; padding:6px 16px;">P(a)=<span class="val">?</span></button>
+                <button class="var-toggle" data-var="ra" data-val="?" style="font-size:14px; padding:6px 16px;">R(a)=<span class="val">?</span></button>
+                <button class="var-toggle" data-var="sa" data-val="?" style="font-size:14px; padding:6px 16px;">S(a)=<span class="val">?</span></button>
             </div>
-            <div class="guide-card" style="min-height:0;">
-                <h3 style="font-size:17px;">Tabla del contraejemplo</h3>
-                <table class="logic-table" style="margin-top:8px; font-size:16px;">
+            <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:8px; text-align:center;">
+                <div class="eval-box" id="inv2-p1" style="min-height:52px; padding:6px 5px; font-size:13px;">P1: $P(a)\lor R(a)$<br><span class="res">?</span></div>
+                <div class="eval-box" id="inv2-p2" style="min-height:52px; padding:6px 5px; font-size:13px;">P2: $P(a)\land S(a)$<br><span class="res">?</span></div>
+                <div class="eval-box" id="inv2-c"  style="min-height:52px; padding:6px 5px; font-size:13px;">C: $R(a)\land S(a)$<br><span class="res">?</span></div>
+            </div>
+            <div id="inv2-msg" style="margin-top:7px; padding:6px 10px; border-radius:7px; text-align:center; font-size:13px; font-weight:bold; background:rgba(255,255,255,0.05); color:var(--text-dim); transition:all 0.3s;">
+                Haz clic en las variables para asignar V o F.
+            </div>
+        </div>
+        <div style="text-align:center; margin-top:10px;">
+            <button class="reveal-solution-btn" onclick="this.style.display='none'; document.getElementById('inv2-solution').style.display='flex';" style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); color:var(--text-dim); padding:6px 20px; border-radius:20px; cursor:pointer; font-size:13px; transition:all 0.2s;">
+                <i class="fas fa-eye"></i> Ver solución oficial
+            </button>
+        </div>
+        <div class="answer-solution" id="inv2-solution" style="display:none; margin-top:8px; gap:10px; align-items:start; grid-template-columns:1.4fr 0.8fr;">
+            <div class="example-card" style="padding:10px 14px;">
+                <h3 style="font-size:15px; margin-bottom:6px;">Por qué funciona</h3>
+                <p style="font-size:13px; line-height:1.8; color:var(--text-dim);">
+                    P2 exige $P(a)=\text{V}$ y $S(a)=\text{V}$ simultáneamente.<br>
+                    P1 solo necesita $P(a)\lor R(a)=\text{V}$ — ya cumplida con $P(a)=\text{V}$.<br>
+                    Conclusión: $R(a)\land S(a)$ — si ponemos $R(a)=\text{F}$, es F. Listo.
+                </p>
+            </div>
+            <div class="example-side" style="padding:10px 14px;">
+                <span class="tag">Contraejemplo</span>
+                <table class="logic-table" style="font-size:15px; margin-top:6px;">
                     <thead><tr><th>$P(a)$</th><th>$R(a)$</th><th>$S(a)$</th><th>P1</th><th>P2</th><th>C</th></tr></thead>
-                    <tbody>
-                        <tr>
-                            <td style="color:var(--ucv-accent);">V</td>
-                            <td style="color:#ff9a9a;">F</td>
-                            <td style="color:var(--ucv-accent);">V</td>
-                            <td style="color:var(--ucv-accent);">V</td>
-                            <td style="color:var(--ucv-accent);">V</td>
-                            <td style="color:#ff9a9a; font-weight:900;">F ✓</td>
-                        </tr>
-                    </tbody>
+                    <tbody><tr>
+                        <td style="color:var(--ucv-accent);">V</td>
+                        <td style="color:#ff9a9a;">F</td>
+                        <td style="color:var(--ucv-accent);">V</td>
+                        <td style="color:var(--ucv-accent);">V</td>
+                        <td style="color:var(--ucv-accent);">V</td>
+                        <td style="color:#ff9a9a; font-weight:900;">F ✓</td>
+                    </tr></tbody>
                 </table>
-                <p style="font-size:14px; margin-top:8px; color:var(--text-dim);">El argumento es <strong style="color:#ff9a9a;">INVÁLIDO</strong> con $\mathbb{U}=\{a\}$.</p>
+                <p style="font-size:12px; color:#ff9a9a; font-weight:700; margin-top:6px;">Argumento INVÁLIDO ✓</p>
             </div>
-        </div>
-        <div class="note-bar" style="font-size:15px;">
-            <strong>Intuición:</strong> P2 garantiza $P$ y $S$ para todos, pero P1 solo necesita $P$ ó $R$ — como ya tenemos $P$, $R$ puede ser F. La conclusión pide $R$ y $S$ juntos, pero $R$ no tiene ninguna premisa que la fuerce a ser V.
         </div>
     </div>
 </div>`;
@@ -742,5 +758,117 @@ export const p2Ej11ValidezASlide = String.raw`
                 <tr><td>13</td><td>$\forall x:[\lnot R(x)\to P(x)]$</td><td>GU en 12 ($x$ fue arbitraria)</td></tr>
             </tbody>
         </table>
+    </div>
+</div>`;
+
+// ─── Ej. 5 — Simbolización ítems c, d, e ──────────────────────────────────────
+
+export const p2Ej5SimbolizacionCDESlide = String.raw`
+<div class="slide">
+    <h2 class="slide-title">Ejercicio 5: <span>Simbolización</span> — Ítems c, d, e</h2>
+    <div class="content">
+        <div class="guide-grid" style="grid-template-columns:repeat(3,1fr); margin-bottom:10px;">
+            <div class="guide-card">
+                <h3 style="font-size:15px;">Ítem c — Ejecutivos</h3>
+                <p style="font-size:13px; color:var(--text-dim); line-height:1.5; margin-bottom:6px;">"Cualquier ejecutivo acaba cansado. Nadie que acabe cansado es feliz. ∴ Ningún ejecutivo es feliz."</p>
+                <p style="font-size:12px; margin-bottom:5px;">$\mathbb{U}=\{\text{personas}\}$ · $E(x)$: ejecutivo · $C(x)$: cansado · $F(x)$: feliz</p>
+                <p style="color:var(--ucv-accent); font-size:14px; line-height:2.0;">
+                    P1: $\forall x:[E(x)\to C(x)]$<br>
+                    P2: $\forall x:[C(x)\to\lnot F(x)]$<br>
+                    $\therefore$ C: $\forall x:[E(x)\to\lnot F(x)]$
+                </p>
+                <p style="font-size:12px; color:var(--text-dim); margin-top:4px;">Patrón: SH universal</p>
+            </div>
+            <div class="guide-card">
+                <h3 style="font-size:15px;">Ítem d — Juan y la pintura</h3>
+                <p style="font-size:13px; color:var(--text-dim); line-height:1.5; margin-bottom:6px;">"Todo sujeto sensible admira la pintura. Juan es sensible. ∴ Juan admira la pintura."</p>
+                <p style="font-size:12px; margin-bottom:5px;">$\mathbb{U}=\{\text{personas}\}$ · $S(x)$: sensible · $A(x)$: admira pintura · $j$: Juan</p>
+                <p style="color:var(--ucv-accent); font-size:14px; line-height:2.0;">
+                    P1: $\forall x:[S(x)\to A(x)]$<br>
+                    P2: $S(j)$<br>
+                    $\therefore$ C: $A(j)$
+                </p>
+                <p style="font-size:12px; color:var(--text-dim); margin-top:4px;">Patrón: PU + MP sobre constante</p>
+            </div>
+            <div class="guide-card">
+                <h3 style="font-size:15px;">Ítem e — Banqueros y mendigos</h3>
+                <p style="font-size:13px; color:var(--text-dim); line-height:1.5; margin-bottom:6px;">"Todos los banqueros amasan su fortuna siendo generosos. Algunos mendigos no lo hicieron. ∴ Ningún mendigo es banquero."</p>
+                <p style="font-size:12px; margin-bottom:5px;">$\mathbb{U}=\{\text{personas}\}$ · $B(x)$: banquero · $G(x)$: amasó siendo generoso · $M(x)$: mendigo</p>
+                <p style="color:var(--ucv-accent); font-size:14px; line-height:2.0;">
+                    P1: $\forall x:[B(x)\to G(x)]$<br>
+                    P2: $\exists x:[M(x)\land\lnot G(x)]$<br>
+                    $\therefore$ C: $\lnot[\exists x:[M(x)\land B(x)]]$
+                </p>
+                <p style="font-size:12px; color:var(--text-dim); margin-top:4px;">Patrón: $\forall$ + $\exists\lnot$ · PE+MT+GE</p>
+            </div>
+        </div>
+        <div class="case-grid" style="margin-top:0;">
+            <div class="case-card">
+                <div class="case-head"><h3>¿Por qué (c) usa $\forall+\to$ dos veces?</h3></div>
+                <p class="case-desc" style="font-size:15px;">"Nadie que acabe cansado es feliz" = $\forall x:[C(x)\to\lnot F(x)]$. Ambas premisas son universales con $\to$. La conclusión se sigue por Silogismo Hipotético: $E\to C$, $C\to\lnot F$ $\therefore E\to\lnot F$.</p>
+            </div>
+            <div class="case-card">
+                <div class="case-head"><h3>¿Por qué (e) no usa $\forall$ en la conclusión?</h3></div>
+                <p class="case-desc" style="font-size:15px;">$\lnot[\exists x:[M(x)\land B(x)]]$ es equivalente a $\forall x:[M(x)\to\lnot B(x)]$ — ambas formas son correctas. La primera dice "no existe mendigo que sea banquero"; la segunda, "todo mendigo no es banquero".</p>
+            </div>
+        </div>
+    </div>
+</div>`;
+
+// ─── Ej. 5 — Simbolización ítems f, g, h, i ───────────────────────────────────
+
+export const p2Ej5SimbolizacionFGHISlide = String.raw`
+<div class="slide">
+    <h2 class="slide-title">Ejercicio 5: <span>Simbolización</span> — Ítems f, g, h, i</h2>
+    <div class="content">
+        <div class="guide-grid" style="grid-template-columns:repeat(2,1fr); margin-bottom:10px;">
+            <div class="guide-card" style="min-height:0;">
+                <h3 style="font-size:15px;">Ítem f — Selvas tropicales</h3>
+                <p style="font-size:12px; color:var(--text-dim); margin-bottom:5px;">"Todas las selvas tienen color esmeralda. Nada esmeralda está reseco. ∴ Ninguna selva está reseca."</p>
+                <p style="font-size:11px; margin-bottom:4px;">$S(x)$: selva tropical · $E(x)$: color esmeralda · $R(x)$: reseco</p>
+                <p style="color:var(--ucv-accent); font-size:13px; line-height:1.9;">
+                    P1: $\forall x:[S(x)\to E(x)]$ &nbsp;·&nbsp; P2: $\forall x:[E(x)\to\lnot R(x)]$<br>
+                    $\therefore$ $\forall x:[S(x)\to\lnot R(x)]$
+                </p>
+                <p style="font-size:11px; color:var(--text-dim);">SH universal — idéntico a ítem (c)</p>
+            </div>
+            <div class="guide-card" style="min-height:0;">
+                <h3 style="font-size:15px;">Ítem g — Cerdos y cerezos</h3>
+                <p style="font-size:12px; color:var(--text-dim); margin-bottom:5px;">"Todos los cerdos tienen alas. Algunos cerezos no tienen alas. ∴ Hay cerezos que no son cerdos."</p>
+                <p style="font-size:11px; margin-bottom:4px;">$C(x)$: cerdo · $A(x)$: tiene alas · $Z(x)$: cerezo</p>
+                <p style="color:var(--ucv-accent); font-size:13px; line-height:1.9;">
+                    P1: $\forall x:[C(x)\to A(x)]$ &nbsp;·&nbsp; P2: $\exists x:[Z(x)\land\lnot A(x)]$<br>
+                    $\therefore$ $\exists x:[Z(x)\land\lnot C(x)]$
+                </p>
+                <p style="font-size:11px; color:var(--text-dim);">Mismo patrón que (e) — PE+MT+GE</p>
+            </div>
+            <div class="guide-card" style="min-height:0;">
+                <h3 style="font-size:15px;">Ítem h — Enamorados y deprimidos</h3>
+                <p style="font-size:12px; color:var(--text-dim); margin-bottom:5px;">"Ningún enamorado suspira. Todos los deprimidos suspiran. ∴ Nadie deprimido está enamorado."</p>
+                <p style="font-size:11px; margin-bottom:4px;">$E(x)$: enamorado · $S(x)$: suspira · $D(x)$: deprimido</p>
+                <p style="color:var(--ucv-accent); font-size:13px; line-height:1.9;">
+                    P1: $\forall x:[E(x)\to\lnot S(x)]$ &nbsp;·&nbsp; P2: $\forall x:[D(x)\to S(x)]$<br>
+                    $\therefore$ $\forall x:[D(x)\to\lnot E(x)]$
+                </p>
+                <p style="font-size:11px; color:var(--text-dim);">Patrón MT: $D\to S$, $E\to\lnot S$ $\therefore D\to\lnot E$</p>
+            </div>
+            <div class="guide-card" style="min-height:0;">
+                <h3 style="font-size:15px;">Ítem i — Extraterrestres sin corazón</h3>
+                <p style="font-size:12px; color:var(--text-dim); margin-bottom:5px;">"Nadie que siga las leyes de la lógica tiene corazón. Todos los extraterrestres las siguen. ∴ Los extraterrestres carecen de corazón."</p>
+                <p style="font-size:11px; margin-bottom:4px;">$L(x)$: sigue leyes de lógica · $C(x)$: tiene corazón · $X(x)$: extraterrestre</p>
+                <p style="color:var(--ucv-accent); font-size:13px; line-height:1.9;">
+                    P1: $\forall x:[L(x)\to\lnot C(x)]$ &nbsp;·&nbsp; P2: $\forall x:[X(x)\to L(x)]$<br>
+                    $\therefore$ $\forall x:[X(x)\to\lnot C(x)]$
+                </p>
+                <p style="font-size:11px; color:var(--text-dim);">SH: $X\to L$, $L\to\lnot C$ $\therefore X\to\lnot C$</p>
+            </div>
+        </div>
+        <div class="note-bar" style="font-size:14px;">
+            <strong>Patrones recurrentes en Ej. 5:</strong> &nbsp;
+            SH ($\forall[A\to B]$, $\forall[B\to C]$ $\therefore\forall[A\to C]$) — ítems a, c, f, i &nbsp;·&nbsp;
+            $\forall+\exists\lnot$ (PE+MT+GE) — ítems e, g &nbsp;·&nbsp;
+            MT inverso — ítem h &nbsp;·&nbsp;
+            Constante + MP — ítem d
+        </div>
     </div>
 </div>`;

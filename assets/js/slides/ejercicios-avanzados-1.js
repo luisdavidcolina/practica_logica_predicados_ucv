@@ -181,51 +181,74 @@ export const quizEj2AnalisisSlide = String.raw`
 
 export const quizEj2SolucionSlide = String.raw`
 <div class="slide">
-    <h2 class="slide-title">Ejercicio 6: Invalidez — <span>Contraejemplo $\mathbb{U} = \{a,b\}$</span></h2>
+    <h2 class="slide-title">Ejercicio 6: Invalidez — <span>Encuentra el Contraejemplo</span></h2>
     <div class="content">
-        <div class="note-bar" style="margin-bottom:12px;">
-            Buscamos valores para $F(a)$, $F(b)$, $P(a)$, $P(b)$, $R(a)$, $R(b)$ tal que P1, P2, P3 sean V y la conclusión $\exists x:R(x)$ sea F.
-        </div>
-        <div class="example-panel" style="margin-top:0;">
+        <div class="example-panel" style="margin-top:0; grid-template-columns:1.3fr 0.7fr;">
             <div class="example-card">
-                <h3>Razonamiento de construcción del contraejemplo</h3>
-                <div class="example-item">
-                    <span class="step">Conclusión F</span>
-                    <span class="text">$\exists x:R(x)$ es F $\Leftrightarrow$ $R(a)\equiv\text{F}$ y $R(b)\equiv\text{F}$ (nadie cumple $R$)</span>
-                </div>
-                <div class="example-item">
-                    <span class="step">P1 V</span>
-                    <span class="text">$F(b)\to\forall x:P(x)$. Hacemos $F(b)=$F → P1 es V vacuamente ($\mathbf{F}\to\text{cualquier cosa} \equiv \mathbf{V}$)</span>
-                </div>
-                <div class="example-item">
-                    <span class="step">P2 V</span>
-                    <span class="text">$\exists x:F(x) \equiv F(a)\lor F(b)$. $F(b)=$F, así que necesitamos $F(a)=$V ✓</span>
-                </div>
-                <div class="example-item">
-                    <span class="step">P3 V</span>
-                    <span class="text">$\exists x:[P(x)\to R(x)] \equiv [P(a)\to R(a)]\lor[P(b)\to R(b)]$. $R(a)=R(b)=$F. Hacemos $P(a)=$F → $(\mathbf{F}\to\mathbf{F})\equiv\mathbf{V}$ ✓</span>
+                <h3>Argumento — Quiz II Ej.2 / Parcial 2 Ej.4 · $\mathbb{U}=\{a,b\}$</h3>
+                <div class="case-formula" style="font-size:17px; line-height:2; text-align:left; padding:8px 14px;">
+                    P1: $F(b)\to\forall x:P(x)$<br>
+                    P2: $\exists x:F(x)$<br>
+                    P3: $\exists x:[P(x)\to R(x)]$<br>
+                    $\therefore\ \exists x:R(x)$
                 </div>
             </div>
             <div class="example-side">
-                <span class="tag">Contraejemplo</span>
-                <table class="logic-table" style="font-size:16px; margin-top:8px;">
-                    <thead><tr><th>F(a)</th><th>F(b)</th><th>P(a)</th><th>P(b)</th><th>R(a)</th><th>R(b)</th></tr></thead>
-                    <tbody>
-                        <tr>
-                            <td style="color:var(--ucv-accent);">V</td>
-                            <td style="color:#ff9a9a;">F</td>
-                            <td style="color:#ff9a9a;">F</td>
-                            <td style="color:var(--ucv-accent);">V</td>
-                            <td style="color:#ff9a9a;">F</td>
-                            <td style="color:#ff9a9a;">F</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p style="margin-top:10px; font-size:16px;">P1: F→(F∧V) = V ✓<br>P2: V∨F = V ✓<br>P3: (F→F)∨(V→F) = V∨F = V ✓<br>C: F∨F = <strong style="color:#ff9a9a;">F ✓</strong></p>
+                <span class="tag">Tu misión</span>
+                <p style="font-size:13px; line-height:1.7;">Asigna V/F a $F(a)$, $F(b)$, $P(a)$, $P(b)$, $R(a)$, $R(b)$ hasta que el simulador confirme que <strong style="color:var(--ucv-accent);">P1=P2=P3=V</strong> y <strong style="color:#ff9a9a;">C=F</strong>.</p>
+                <p style="font-size:12px; color:var(--text-dim); margin-top:6px;">Pista: ¿qué ocurre si $F(b)=\text{F}$?</p>
             </div>
         </div>
-        <div class="note-bar" style="margin-top:10px;">
-            <strong>El argumento es INVÁLIDO.</strong> Este contraejemplo fue la solución exacta del Quiz II (Ej.2) y del Parcial 2 (Ej.4) — Sem. II-2025.
+        <div class="sandbox-panel" id="sandbox_inv1" style="margin-top:10px; background:linear-gradient(180deg,rgba(18,24,29,0.98),rgba(11,15,18,0.98)); border:1px solid rgba(200,240,122,0.3); border-radius:10px; padding:10px 14px;">
+            <div style="text-align:center; color:var(--ucv-accent); font-size:13px; font-weight:700; margin-bottom:7px;">⚡ Simulador de Valores de Verdad — $\mathbb{U}=\{a,b\}$</div>
+            <div style="display:flex; justify-content:center; gap:6px; margin-bottom:8px; flex-wrap:wrap;">
+                <button class="var-toggle" data-var="fa" data-val="?" style="font-size:13px; padding:5px 11px;">F(a)=<span class="val">?</span></button>
+                <button class="var-toggle" data-var="fb" data-val="?" style="font-size:13px; padding:5px 11px;">F(b)=<span class="val">?</span></button>
+                <button class="var-toggle" data-var="pa" data-val="?" style="font-size:13px; padding:5px 11px;">P(a)=<span class="val">?</span></button>
+                <button class="var-toggle" data-var="pb" data-val="?" style="font-size:13px; padding:5px 11px;">P(b)=<span class="val">?</span></button>
+                <button class="var-toggle" data-var="ra" data-val="?" style="font-size:13px; padding:5px 11px;">R(a)=<span class="val">?</span></button>
+                <button class="var-toggle" data-var="rb" data-val="?" style="font-size:13px; padding:5px 11px;">R(b)=<span class="val">?</span></button>
+            </div>
+            <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:6px; text-align:center;">
+                <div class="eval-box" id="inv1-p1" style="min-height:48px; padding:5px 4px; font-size:12px;">P1: $F(b)\to\forall P$<br><span class="res">?</span></div>
+                <div class="eval-box" id="inv1-p2" style="min-height:48px; padding:5px 4px; font-size:12px;">P2: $\exists x:F(x)$<br><span class="res">?</span></div>
+                <div class="eval-box" id="inv1-p3" style="min-height:48px; padding:5px 4px; font-size:12px;">P3: $\exists[P\to R]$<br><span class="res">?</span></div>
+                <div class="eval-box" id="inv1-c"  style="min-height:48px; padding:5px 4px; font-size:12px;">C: $\exists x:R(x)$<br><span class="res">?</span></div>
+            </div>
+            <div id="inv1-msg" style="margin-top:7px; padding:6px 10px; border-radius:7px; text-align:center; font-size:13px; font-weight:bold; background:rgba(255,255,255,0.05); color:var(--text-dim); transition:all 0.3s;">
+                Haz clic en las variables para asignar V o F.
+            </div>
+        </div>
+        <div style="text-align:center; margin-top:10px;">
+            <button class="reveal-solution-btn" onclick="this.style.display='none'; document.getElementById('inv1-solution').style.display='block';" style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); color:var(--text-dim); padding:6px 20px; border-radius:20px; cursor:pointer; font-size:13px; transition:all 0.2s;">
+                <i class="fas fa-eye"></i> Ver solución oficial
+            </button>
+        </div>
+        <div class="answer-solution" id="inv1-solution" style="display:none; margin-top:8px;">
+            <div style="display:grid; grid-template-columns:1.4fr 0.8fr; gap:10px; align-items:start;">
+                <div class="example-card" style="padding:10px 14px;">
+                    <h3 style="font-size:15px; margin-bottom:6px;">Razonamiento de construcción</h3>
+                    <p style="font-size:13px; line-height:1.8; color:var(--text-dim);">
+                        <strong style="color:#ff9a9a;">C=F</strong>: $R(a)=R(b)=\text{F}$ (nadie cumple $R$)<br>
+                        <strong style="color:var(--ucv-accent);">P1=V</strong>: $F(b)=\text{F}$ → condicional V vacuamente<br>
+                        <strong style="color:var(--ucv-accent);">P2=V</strong>: $F(b)=\text{F}$ → necesitamos $F(a)=\text{V}$<br>
+                        <strong style="color:var(--ucv-accent);">P3=V</strong>: $P(a)=\text{F}$ → $\text{F}\to\text{F}\equiv\text{V}$
+                    </p>
+                </div>
+                <div class="example-side" style="padding:10px 14px;">
+                    <span class="tag">Contraejemplo</span>
+                    <table class="logic-table" style="font-size:14px; margin-top:6px;">
+                        <thead><tr><th>F(a)</th><th>F(b)</th><th>P(a)</th><th>P(b)</th><th>R(a)</th><th>R(b)</th></tr></thead>
+                        <tbody><tr>
+                            <td style="color:var(--ucv-accent);">V</td><td style="color:#ff9a9a;">F</td>
+                            <td style="color:#ff9a9a;">F</td><td style="color:var(--ucv-accent);">V</td>
+                            <td style="color:#ff9a9a;">F</td><td style="color:#ff9a9a;">F</td>
+                        </tr></tbody>
+                    </table>
+                    <p style="font-size:12px; margin-top:6px; color:var(--text-dim);">P1=V · P2=V · P3=V · <strong style="color:#ff9a9a;">C=F ✓</strong></p>
+                    <p style="font-size:12px; color:#ff9a9a; font-weight:700;">Argumento INVÁLIDO</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>`;

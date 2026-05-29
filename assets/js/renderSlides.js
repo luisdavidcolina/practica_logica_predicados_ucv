@@ -102,6 +102,61 @@ if (root) {
         }
     });
 
+    // ── Auto-reveal para example-card / guide-card con pasos P1/P2/C ────────────
+    const isAnswerItem = (item) => {
+        const step = item.querySelector('.step');
+        if (!step) return false;
+        const t = step.textContent.trim();
+        return /^P[1-9]$/.test(t)   // P1, P2, P3
+            || t.startsWith('∴')     // ∴ C, ∴
+            || t === 'Conclusión'
+            || t === 'Condicional'
+            || t === '✓ Correcto'
+            || t === '✗ Error'
+            || t === '✓ Válido'
+            || t.startsWith('Correcto')
+            || t.startsWith('Error');
+    };
+
+    root.querySelectorAll('.example-card, .guide-card').forEach(card => {
+        const items = Array.from(card.querySelectorAll('.example-item'));
+        if (items.length < 2) return;
+
+        let startIdx = -1;
+        for (let i = 0; i < items.length; i++) {
+            if (isAnswerItem(items[i])) { startIdx = i; break; }
+        }
+        if (startIdx === -1) return;
+
+        for (let i = startIdx; i < items.length; i++) {
+            items[i].classList.add('hidden-proof-step');
+        }
+
+        const h3 = card.querySelector('h3');
+        if (!h3) return;
+
+        const btnSpan = document.createElement('span');
+        btnSpan.className = 'inline-reveal-container';
+        btnSpan.style.float = 'right';
+        btnSpan.innerHTML = `<button class="reveal-eye-btn-mini has-tip tip-left" data-tip="Revelar siguiente paso" style="background:transparent;border:none;color:var(--ucv-accent);font-size:20px;cursor:pointer;transition:transform 0.2s,opacity 0.2s;opacity:0.7;"><i class="fas fa-eye"></i></button>`;
+        h3.appendChild(btnSpan);
+
+        const btn = btnSpan.querySelector('button');
+        btn.addEventListener('mouseover', () => { btn.style.transform = 'scale(1.2)'; btn.style.opacity = '1'; });
+        btn.addEventListener('mouseout',  () => { btn.style.transform = 'scale(1)';   btn.style.opacity = '0.7'; });
+        btn.addEventListener('click', () => {
+            const next = card.querySelector('.hidden-proof-step');
+            if (next) {
+                next.classList.remove('hidden-proof-step');
+                next.classList.add('revealed-proof-step');
+                if (!card.querySelector('.hidden-proof-step')) {
+                    btnSpan.style.opacity = '0';
+                    setTimeout(() => btnSpan.remove(), 300);
+                }
+            }
+        });
+    });
+
     // Sandbox click handler — wire specific evaluators per exercise in each slide file
     document.addEventListener('click', (e) => {
         const btn = e.target.closest('.var-toggle');
@@ -122,18 +177,90 @@ if (root) {
         }
     });
 
+    // ── Sandbox evaluadores de invalidez ──────────────────────────────────────
+    const _imp = (a,b) => (a===null||b===null)?null:(!a||b);
+    const _or  = (a,b) => (a===null||b===null)?null:(a||b);
+    const _and = (a,b) => (a===null||b===null)?null:(a&&b);
+    const _not = (a)   => a===null?null:!a;
+
+    const _readVars = (sandboxEl) => {
+        const vars = {}; let ok = true;
+        sandboxEl.querySelectorAll('.var-toggle').forEach(btn => {
+            const v = btn.getAttribute('data-val');
+            if (v === '?') { ok = false; vars[btn.getAttribute('data-var')] = null; }
+            else vars[btn.getAttribute('data-var')] = v === 'V';
+        });
+        return { vars, ok };
+    };
+
+    const _setBox = (id, val) => {
+        const box = document.getElementById(id);
+        if (!box) return;
+        box.querySelector('.res').textContent = val===null?'?':(val?'V':'F');
+        box.classList.remove('is-v','is-f');
+        if (val!==null) box.classList.add(val?'is-v':'is-f');
+    };
+
+    const _setMsg = (msgId, sbEl, allOk, premisasOk, cOk) => {
+        const msg = document.getElementById(msgId);
+        if (!msg) return;
+        if (!allOk) {
+            msg.textContent = 'Haz clic en las variables para asignar V o F.';
+            msg.style.background = 'rgba(255,255,255,0.05)';
+            msg.style.color = 'var(--text-dim)';
+            sbEl.classList.remove('success-pulse');
+        } else if (premisasOk && !cOk) {
+            msg.innerHTML = '¡Éxito! Encontraste el <strong>contraejemplo</strong>: todas las premisas V y la conclusión F. Argumento INVÁLIDO.';
+            msg.style.background = 'rgba(200,240,122,0.18)';
+            msg.style.color = 'var(--ucv-accent)';
+            sbEl.classList.add('success-pulse');
+        } else {
+            msg.textContent = 'Sigue buscando… necesitas premisas V y conclusión F simultáneamente.';
+            msg.style.background = 'rgba(255,120,120,0.1)';
+            msg.style.color = '#ff9a9a';
+            sbEl.classList.remove('success-pulse');
+        }
+    };
+
+    // Sandbox inv1 — Quiz II Ej.2 / Parcial 2 Ej.4 (U={a,b})
+    // P1: F(b)→[P(a)∧P(b)]  P2: F(a)∨F(b)  P3: [P(a)→R(a)]∨[P(b)→R(b)]  C: R(a)∨R(b)
+    window.updateSandbox_sandbox_inv1 = () => {
+        const sb = document.getElementById('sandbox_inv1'); if (!sb) return;
+        const {vars:v, ok} = _readVars(sb);
+        const p1 = _imp(v.fb, _and(v.pa, v.pb));
+        const p2 = _or(v.fa, v.fb);
+        const p3 = _or(_imp(v.pa, v.ra), _imp(v.pb, v.rb));
+        const c  = _or(v.ra, v.rb);
+        _setBox('inv1-p1',p1); _setBox('inv1-p2',p2); _setBox('inv1-p3',p3); _setBox('inv1-c',c);
+        _setMsg('inv1-msg', sb, ok, p1&&p2&&p3, c);
+    };
+
+    // Sandbox inv2 — Práctica 2 Ej.10a (U={a})
+    // P1: P(a)∨R(a)  P2: P(a)∧S(a)  C: R(a)∧S(a)
+    window.updateSandbox_sandbox_inv2 = () => {
+        const sb = document.getElementById('sandbox_inv2'); if (!sb) return;
+        const {vars:v, ok} = _readVars(sb);
+        const p1 = _or(v.pa, v.ra);
+        const p2 = _and(v.pa, v.sa);
+        const c  = _and(v.ra, v.sa);
+        _setBox('inv2-p1',p1); _setBox('inv2-p2',p2); _setBox('inv2-c',c);
+        _setMsg('inv2-msg', sb, ok, p1&&p2, c);
+    };
+
     // Scale to fit any screen
     const scaleToFit = () => {
-        const windowWidth = window.innerWidth;
-        const windowHeight = window.innerHeight;
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        const isPortrait = h > w;
 
         let scale;
-        if (windowWidth < 768) {
-            scale = (windowWidth / 1280) * 0.98;
+        if (isPortrait) {
+            // Portrait (cualquier dispositivo): escalar por ancho, scroll vertical
+            scale = (w / 1280) * 0.98;
         } else {
-            const scaleX = windowWidth / 1280;
-            const scaleY = windowHeight / 720;
-            scale = Math.min(scaleX, scaleY) * 0.95;
+            // Landscape (desktop o móvil): ajustar ambas dimensiones
+            // El slide es 720px alto en landscape (no 860px — el @media ya está filtrado)
+            scale = Math.min(w / 1280, h / 720) * 0.95;
         }
 
         root.style.transform = `scale(${scale})`;
@@ -230,6 +357,56 @@ if (root) {
         btnIndex.style.opacity = '0.15';
     });
     btnIndex.addEventListener('click', () => updateSlide(1));
+
+    // PDF Download
+    const pdfUI = document.createElement('div');
+    pdfUI.innerHTML = `
+        <button id="pdf-download" aria-label="Descargar PDF completo" style="position: fixed; bottom: 40px; right: 220px; background: rgba(11,15,18,0.8); border: 1px solid rgba(255,255,255,0.1); color: var(--text-dim); font-size: 16px; padding: 12px 20px; border-radius: 30px; cursor: pointer; display: flex; align-items: center; gap: 8px; z-index: 1000; backdrop-filter: blur(8px); opacity: 0.15; transition: all 0.2s;">
+            <i class="fas fa-file-pdf"></i> PDF
+        </button>
+    `;
+    document.body.appendChild(pdfUI);
+
+    const btnPdf = document.getElementById('pdf-download');
+    btnPdf.addEventListener('mouseover', () => {
+        btnPdf.style.color = 'var(--ucv-accent)';
+        btnPdf.style.transform = 'scale(1.05)';
+        btnPdf.style.borderColor = 'var(--ucv-accent)';
+        btnPdf.style.opacity = '1';
+    });
+    btnPdf.addEventListener('mouseout', () => {
+        btnPdf.style.color = 'var(--text-dim)';
+        btnPdf.style.transform = 'scale(1)';
+        btnPdf.style.borderColor = 'rgba(255,255,255,0.1)';
+        btnPdf.style.opacity = '0.15';
+    });
+    btnPdf.addEventListener('click', async () => {
+        // Feedback visual mientras prepara
+        btnPdf.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Preparando…';
+        btnPdf.style.opacity = '1';
+        btnPdf.style.pointerEvents = 'none';
+
+        // 1. Mostrar todas las láminas
+        slideWrappers.forEach(w => { w.style.display = 'block'; });
+
+        // 2. Esperar fuentes + varios frames de layout
+        await document.fonts.ready;
+        await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(() => requestAnimationFrame(r))));
+        await new Promise(r => setTimeout(r, 1400));
+
+        // 3. Restaurar estado al cerrar el diálogo
+        const afterPrint = () => {
+            slideWrappers.forEach((w, i) => {
+                w.style.display = i === currentIndex ? 'block' : 'none';
+            });
+            btnPdf.innerHTML = '<i class="fas fa-file-pdf"></i> PDF';
+            btnPdf.style.pointerEvents = '';
+            window.removeEventListener('afterprint', afterPrint);
+        };
+        window.addEventListener('afterprint', afterPrint);
+
+        window.print();
+    });
 
     // Theme Toggle
     const themeUI = document.createElement('div');

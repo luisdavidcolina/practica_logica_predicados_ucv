@@ -30,22 +30,53 @@ body {
     transition: transform 0.2s ease-out;
 }
 
-@media (max-width: 768px) {
+/* ── Portrait móvil: scroll vertical ─────────────────────────────────────── */
+@media (max-width: 768px) and (orientation: portrait),
+       (pointer: coarse) and (max-width: 950px) and (orientation: portrait) {
     body {
         overflow-y: auto;
         align-items: flex-start;
         padding-top: 20px;
     }
+
+    #slides-root { height: 860px; }
+    .slide       { height: 860px; }
 }
 
-@media (max-width: 768px), (pointer: coarse) and (max-width: 950px) {
-    #slides-root {
-        height: 860px;
+/* ── Landscape móvil: cabe en pantalla sin scroll ─────────────────────────── */
+@media (orientation: landscape) and (max-height: 600px) {
+    body {
+        overflow: hidden;
+        height: 100dvh;
+        align-items: center;
     }
 
-    .slide {
-        height: 860px;
+    /* Nav central: compacto, solo flechas */
+    #nav-controls {
+        bottom: 6px !important;
+        padding: 4px 12px !important;
+        gap: 10px !important;
     }
+    /* Ocultar el texto "Navegación ← →" en landscape pequeño */
+    #nav-controls span { display: none !important; }
+
+    /* Botones laterales: fijos al viewport, solo ícono */
+    #go-to-index,
+    #theme-toggle,
+    #pdf-download {
+        position: fixed !important;
+        bottom: 6px !important;
+        padding: 7px 10px !important;
+        border-radius: 18px !important;
+        font-size: 0 !important;   /* oculta el texto */
+    }
+    #go-to-index i,
+    #theme-toggle i,
+    #pdf-download i { font-size: 15px !important; }
+
+    #go-to-index  { left: 8px !important; }
+    #pdf-download { right: 52px !important; }
+    #theme-toggle { right: 8px !important; }
 }
 
 .slide {
@@ -155,6 +186,75 @@ html[data-theme="light"] .slide {
 
 html[data-theme="light"] .slide::before {
     background: radial-gradient(circle, rgba(77, 124, 15, 0.07) 0%, transparent 70%);
+}
+
+/* ── Impresión / Exportación PDF ─────────────────────────────────────────────── */
+@media print {
+    @page { size: 1280px 720px; margin: 0; }
+
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+
+    body { margin: 0; padding: 0; background: #0b0f12 !important; overflow: visible !important; }
+
+    /* Ocultar chrome de navegación y botones de revelar */
+    #nav-controls,
+    #go-to-index,
+    #theme-toggle,
+    #pdf-download,
+    .slide-counter,
+    .inline-reveal-container,
+    .reveal-eye-btn-mini,
+    .reveal-btn-container { display: none !important; }
+
+    /* Mostrar todos los pasos ocultos tal cual */
+    .hidden-proof-step {
+        visibility: visible !important;
+        opacity: 1 !important;
+        animation: none !important;
+    }
+
+    /* Mostrar secciones de respuesta ocultas */
+    .answer-solution {
+        display: grid !important;
+    }
+
+    /* Ocultar botón "Ver solución" */
+    .reveal-solution-btn { display: none !important; }
+
+    /* Raíz: sin escala, apilado */
+    #slides-root {
+        transform: none !important;
+        position: static !important;
+        width: 1280px !important;
+        height: auto !important;
+        display: block !important;
+    }
+
+    /* Cada wrapper = una página — !important sobrescribe el display:none inline */
+    .slide-wrapper,
+    .slide-wrapper[style*="display: none"],
+    .slide-wrapper[style*="display:none"] {
+        display: block !important;
+        width: 1280px !important;
+        height: 720px !important;
+        overflow: hidden !important;
+        page-break-after: always;
+        break-after: page;
+    }
+
+    .slide-wrapper:last-child {
+        page-break-after: avoid;
+        break-after: avoid;
+    }
+
+    .slide {
+        width: 1280px !important;
+        height: 720px !important;
+        position: relative !important;
+        transform: none !important;
+        overflow: hidden !important;
+        box-shadow: none !important;
+    }
 }
 
 html[data-theme="light"] .formula {

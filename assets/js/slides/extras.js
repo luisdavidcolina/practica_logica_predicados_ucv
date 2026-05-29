@@ -186,35 +186,37 @@ export const preguntasFrecSlide = String.raw`
 
 export const curiosidadesSlide = String.raw`
 <div class="slide">
-    <h2 class="slide-title"><span>Curiosidades</span> de la Lógica de Predicados</h2>
+    <h2 class="slide-title"><span>Curiosidades</span> que nadie te cuenta en clase</h2>
     <div class="content">
-        <div class="concept-grid" style="margin-bottom:12px;">
+        <div class="concept-grid" style="margin-bottom:10px;">
             <div class="concept-card">
-                <span class="concept-tag">350 a.C.</span>
-                <h3>Sócrates tenía razón</h3>
-                <p>El argumento "todos los hombres son mortales" que abre esta presentación fue analizado por <strong>Aristóteles</strong> en su <em>Prior Analytics</em>. La notación formal $\forall x:[H(x)\to M(x)]$ llegó 2375 años después, con Frege en 1879.</p>
+                <span class="concept-tag">Prolog · 1972</span>
+                <h3>Un lenguaje que <em>es</em> lógica de predicados</h3>
+                <p>Prolog no <em>usa</em> predicados — <strong>es</strong> predicados. El programa completo:</p>
+                <p style="font-size:13px; color:var(--ucv-accent); font-family:monospace; line-height:1.8; margin:4px 0;">feliz(X) :- baila(X).<br>baila(juan).</p>
+                <p style="font-size:14px;">es exactamente $\forall x:[B(x)\to F(x)]$ y $B(j)$. Escribe dos hechos y Prolog infiere $F(j)$ solo. Hoy se usa en IA, bioinformática y sistemas legales automatizados.</p>
             </div>
             <div class="concept-card">
-                <span class="concept-tag">SQL = LP</span>
-                <h3>La usas todos los días</h3>
-                <p>Una consulta SQL es literalmente lógica de predicados:<br>
-                <code style="font-size:13px; color:var(--ucv-accent);">SELECT * FROM users WHERE age > 18</code><br>
-                es $\exists x:[U(x)\land A(x,18)]$ — "existe un usuario cuya edad es &gt;18". Los motores de bases de datos son evaluadores de predicados.</p>
+                <span class="concept-tag">Russell · 1901</span>
+                <h3>La paradoja del barbero</h3>
+                <p>"En un pueblo hay un barbero que afeita exactamente a quienes <strong>no se afeitan solos</strong>. ¿Quién afeita al barbero?"</p>
+                <p style="font-size:14px; margin-top:6px;">Formalizado: $\exists x:\forall y:[A(x,y)\leftrightarrow\lnot A(y,y)]$. Esta proposición es <strong style="color:#ff9a9a;">inconsistente</strong> — ni V ni F. Russell la usó para demostrar que el sistema de Frege (base de las matemáticas de la época) era fundamentalmente roto.</p>
             </div>
             <div class="concept-card">
-                <span class="concept-tag">1901</span>
-                <h3>La paradoja que rompió la lógica</h3>
-                <p><strong>Bertrand Russell</strong> definió: sea $S = \{x \mid x\notin x\}$. ¿Es $S\in S$? Si sí → $S\notin S$. Si no → $S\in S$. Esta paradoja destruyó el sistema de Frege y forzó una reconstrucción completa de los fundamentos de la matemática.</p>
+                <span class="concept-tag">Gödel · 1931</span>
+                <h3>"Esta oración no es demostrable"</h3>
+                <p>Gödel construyó una oración $G$ que dice exactamente eso de sí misma. Si $G$ fuera demostrable → el sistema es inconsistente. Si $G$ no es demostrable → es <strong>verdadera</strong> pero el sistema no puede probarlo.</p>
+                <p style="font-size:14px; margin-top:6px;">Conclusión: <em>todo</em> sistema de matemáticas tiene verdades que nunca podrá demostrar. Para siempre. No importa cuántos axiomas agregues.</p>
             </div>
             <div class="concept-card">
-                <span class="concept-tag">1931</span>
-                <h3>Lo que ni Dios puede demostrar</h3>
-                <p><strong>Gödel</strong> demostró que en cualquier sistema axiomático consistente y suficientemente potente, existen proposiciones <em>verdaderas pero indemostrables</em>. La formalización usa exactamente las herramientas de esta clase — cuantificadores, predicados y argumentación lógica.</p>
+                <span class="concept-tag">Turing · 1936</span>
+                <h3>$\forall x:P(x)$ a veces es <em>imposible</em> de saber</h3>
+                <p>Turing demostró que no existe ningún algoritmo capaz de decidir si $\forall x:P(x)$ es verdadera para un predicado arbitrario sobre los enteros.</p>
+                <p style="font-size:14px; margin-top:6px;">La lógica de predicados es <strong>semidecidible</strong>: si la respuesta es SÍ, eventualmente se encuentra. Si es NO, el algoritmo corre <em>para siempre</em> sin saberlo. Lo que estudias aquí tiene límites que ninguna computadora puede superar.</p>
             </div>
         </div>
-        <div class="example-side" style="border-radius:12px; padding:12px 18px; margin-top:0;">
-            <span class="tag">Dato curioso UCV</span>
-            <p style="font-size:15px;">El ejercicio del polinomio $P(x)=x^2-8x+15$ tiene raíces $x=3$ y $x=5$ — ambas impares y positivas. Es un ejemplo perfecto de cómo un predicado "difícil" ($P$) puede interactuar con predicados "simples" ($Q,R$) de formas sorprendentes: $\forall x:[P(x)\to Q(x)]$ es <strong>VERDADERA</strong> por pura coincidencia numérica.</p>
+        <div class="note-bar" style="font-size:14px; padding:8px 16px;">
+            <strong>Tu teléfono hace esto ahora mismo:</strong> Google Knowledge Graph, Siri y Alexa usan ontologías OWL — predicados de primer orden. Cuando preguntas "¿dónde nació Einstein?" el sistema infiere $\exists x:[P(x,\text{Einstein})\land L(x,\text{Ulm})]$ en milisegundos. La misma lógica que estudias hoy mueve billones de consultas por día.
         </div>
     </div>
 </div>`;
@@ -263,6 +265,13 @@ export const documentosSlide = String.raw`
                 <h3 style="font-size:18px;">Solución Parcial II</h3>
                 <p>Solución del Parcial II del Sem. I-2025. Incluye el ejercicio de Lucina (PC, 8 pasos) y el ejercicio complejo (21 pasos).</p>
                 <p style="font-size:13px; color:var(--ucv-accent); margin-top:8px;">06 Jun. 2025 · Grupo docente MDI <i class="fas fa-file-pdf"></i></p>
+            </div>
+            <div class="concept-card doc-card" style="cursor:pointer;"
+                 onclick="window.open('docs/Leyes de equivalencia y Reglas de Inferencia (Predicados).pdf')">
+                <span class="concept-tag">Referencia</span>
+                <h3 style="font-size:18px;">Leyes y Reglas — Predicados</h3>
+                <p>Tabla de equivalencias lógicas, implicaciones y reglas de inferencia (PU, PE, GU, GE) para lógica de predicados. Elaborada por la cátedra.</p>
+                <p style="font-size:13px; color:var(--ucv-accent); margin-top:8px;">MDI C7 · Referencia rápida <i class="fas fa-file-pdf"></i></p>
             </div>
             <div class="concept-card doc-card" style="cursor:pointer;"
                  onclick="window.open('docs/MDI Prof. Monsalve II.pdf')">
