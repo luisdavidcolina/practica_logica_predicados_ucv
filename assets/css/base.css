@@ -8,6 +8,8 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+html { overflow: hidden; }   /* previene scroll antes de que JS inicialice */
+
 body {
     background:
         radial-gradient(circle at top right, rgba(200, 240, 122, 0.08), transparent 32%),
@@ -28,6 +30,55 @@ body {
     position: relative;
     transform-origin: center center;
     transition: transform 0.2s ease-out;
+    /* Escala inicial pura CSS: evita el flash de página sin escalar antes de que JS corra.
+       Fórmula: min(escalaX, escalaY) * 0.95 usando las mismas unidades que el JS */
+    transform: scale(min(calc(100vw * 0.95 / 1280), calc(100vh * 0.95 / 720)));
+}
+
+/* ── Overlay "Gira tu dispositivo" ────────────────────────────────────────── */
+#rotate-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: #0b0f12;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    color: var(--text-main);
+    text-align: center;
+    padding: 40px;
+}
+
+.rotate-icon {
+    font-size: 64px;
+    color: var(--ucv-accent);
+    animation: rotateHint 2s ease-in-out infinite;
+}
+
+@keyframes rotateHint {
+    0%   { transform: rotate(0deg); }
+    30%  { transform: rotate(90deg); }
+    60%  { transform: rotate(90deg); }
+    100% { transform: rotate(0deg); }
+}
+
+.rotate-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--ucv-accent);
+}
+
+.rotate-sub {
+    font-size: 16px;
+    color: var(--text-dim);
+    line-height: 1.6;
+}
+
+/* Mostrar overlay solo en portrait + pantalla pequeña (móviles, no tablets grandes) */
+@media (orientation: portrait) and (max-width: 900px) {
+    #rotate-overlay { display: flex; }
 }
 
 /* ── Portrait móvil: scroll vertical ─────────────────────────────────────── */

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Clase Práctica - Lógica de Predicados | Matemática Discreta I (UCV)</title>
 
     <!-- SEO Meta Tags -->
@@ -32,6 +32,13 @@
 </head>
 
 <body>
+    <!-- Overlay "Gira el dispositivo" — visible solo en portrait móvil -->
+    <div id="rotate-overlay" aria-hidden="true">
+        <i class="fas fa-rotate-right rotate-icon"></i>
+        <p class="rotate-title">Gira tu dispositivo</p>
+        <p class="rotate-sub">Esta presentación está optimizada para <strong>horizontal</strong></p>
+    </div>
+
     <div id="slides-root"></div>
     <script type="module" src="assets/js/renderSlides.js"></script>
 </body>

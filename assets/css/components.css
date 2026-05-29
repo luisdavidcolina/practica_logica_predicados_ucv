@@ -1062,7 +1062,22 @@ th:hover, .case-formula:hover, .formal-code-main:hover, .concept-tag:hover, .cas
     text-shadow: 0 0 10px rgba(255,255,255,0.8);
 }
 
-@media (max-width: 768px) {
+/* ── Ojos de revelar: base ────────────────────────────────────────────────── */
+.reveal-eye-btn-mini {
+    background: transparent;
+    border: none;
+    color: var(--ucv-accent);
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: transform 0.2s, opacity 0.2s;
+    line-height: 1;
+    padding: 2px;
+}
+.reveal-eye-btn-mini:hover { opacity: 1; transform: scale(1.2); }
+
+/* ── Ojos: más grandes en touch y pantallas pequeñas ─────────────────────── */
+@media (pointer: coarse), (max-width: 1024px) {
     .inline-reveal-container {
         position: relative;
         display: inline-block;
@@ -1075,30 +1090,30 @@ th:hover, .case-formula:hover, .formal-code-main:hover, .concept-tag:hover, .cas
 
     .reveal-eye-btn-mini {
         position: absolute;
-        top: -22px;
-        right: -6px;
-        width: 56px;
-        height: 56px;
-        min-width: 56px;
-        min-height: 56px;
-        padding: 0;
-        line-height: 1;
+        top: -26px;
+        right: -8px;
+        width: 48px;
+        height: 48px;
         border-radius: 50%;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        transform: scale(1.55) !important;
-        transform-origin: center;
-        background: transparent !important;
-        border: none !important;
+        background: rgba(var(--ucv-accent-rgb), 0.12) !important;
+        border: 1px solid rgba(var(--ucv-accent-rgb), 0.35) !important;
         opacity: 1 !important;
-        z-index: 5;
+        font-size: 22px !important;
+        z-index: 10;
     }
 
-    .reveal-eye-btn-mini i {
-        font-size: 26px;
-        line-height: 1;
-    }
+    .reveal-eye-btn-mini i { font-size: 22px !important; }
+}
+
+/* ── Chrome buttons: visibles en touch (sin hover) ───────────────────────── */
+@media (pointer: coarse) {
+    #nav-controls { opacity: 0.8 !important; }
+    #go-to-index,
+    #theme-toggle,
+    #pdf-download { opacity: 0.8 !important; }
 }
 
 /* ── Sandbox interactivo de invalidez ────────────────────────────────────────── */

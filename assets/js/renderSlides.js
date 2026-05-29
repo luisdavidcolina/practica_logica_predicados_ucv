@@ -77,13 +77,13 @@ if (root) {
                     btnContainer = document.createElement('span');
                     btnContainer.className = 'inline-reveal-container';
                     btnContainer.style.float = 'right';
-                    btnContainer.innerHTML = `<button class="reveal-eye-btn-mini has-tip tip-left" data-tip="Revelar siguiente paso" style="background: transparent; border: none; color: var(--ucv-accent); font-size: 20px; cursor: pointer; transition: transform 0.2s, opacity 0.2s; opacity: 0.7;"><i class="fas fa-eye"></i></button>`;
+                    btnContainer.innerHTML = `<button class="reveal-eye-btn-mini has-tip tip-left" data-tip="Revelar siguiente paso" class="reveal-eye-btn-mini has-tip tip-left" data-tip="Revelar siguiente paso" style="background:transparent;border:none;color:var(--ucv-accent);cursor:pointer;transition:transform 0.2s,opacity 0.2s;"><i class="fas fa-eye"></i></button>`;
 
                     lastTh.appendChild(btnContainer);
 
                     const btn = btnContainer.querySelector('.reveal-eye-btn-mini');
-                    btn.addEventListener('mouseover', () => { btn.style.transform = 'scale(1.2)'; btn.style.opacity = '1'; });
-                    btn.addEventListener('mouseout', () => { btn.style.transform = 'scale(1)'; btn.style.opacity = '0.7'; });
+                    btn.addEventListener('mouseover', () => { btn.style.transform = 'scale(1.2)'; if (!isTouch) btn.style.opacity = '1'; });
+                    btn.addEventListener('mouseout', () => { btn.style.transform = 'scale(1)'; if (!isTouch) btn.style.opacity = '0.7'; });
 
                     btn.addEventListener('click', () => {
                         const nextHidden = tbody.querySelector('.hidden-proof-step');
@@ -101,6 +101,15 @@ if (root) {
             }
         }
     });
+
+    // En touch no hay hover — los mouseover/mouseout deben ser no-ops para que el CSS !important mande
+    const isTouch = window.matchMedia('(pointer: coarse)').matches;
+    if (isTouch) {
+        root.querySelectorAll('.reveal-eye-btn-mini').forEach(btn => {
+            btn.style.opacity = '';      // limpiar inline opacity para que CSS tome control
+            btn.style.transform = '';
+        });
+    }
 
     // ── Auto-reveal para example-card / guide-card con pasos P1/P2/C ────────────
     const isAnswerItem = (item) => {
@@ -138,7 +147,7 @@ if (root) {
         const btnSpan = document.createElement('span');
         btnSpan.className = 'inline-reveal-container';
         btnSpan.style.float = 'right';
-        btnSpan.innerHTML = `<button class="reveal-eye-btn-mini has-tip tip-left" data-tip="Revelar siguiente paso" style="background:transparent;border:none;color:var(--ucv-accent);font-size:20px;cursor:pointer;transition:transform 0.2s,opacity 0.2s;opacity:0.7;"><i class="fas fa-eye"></i></button>`;
+        btnSpan.innerHTML = `<button class="reveal-eye-btn-mini has-tip tip-left" data-tip="Revelar siguiente paso" class="reveal-eye-btn-mini has-tip tip-left" data-tip="Revelar siguiente paso" style="background:transparent;border:none;color:var(--ucv-accent);cursor:pointer;transition:transform 0.2s,opacity 0.2s;"><i class="fas fa-eye"></i></button>`;
         h3.appendChild(btnSpan);
 
         const btn = btnSpan.querySelector('button');
