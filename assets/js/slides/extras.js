@@ -232,6 +232,13 @@ export const documentosSlide = String.raw`
         </div>
         <div class="concept-grid" style="grid-template-columns:repeat(3,1fr); margin-bottom:12px;">
             <div class="concept-card doc-card" style="cursor:pointer;"
+                 onclick="window.open('docs/ejercicios_resueltos_predicados.pdf')">
+                <span class="concept-tag">Ejercicios</span>
+                <h3 style="font-size:18px;">Ejercicios Resueltos</h3>
+                <p>6 ejercicios resueltos de Práctica 2: simbolización, equivalencia, PC, RAA, Prueba por Casos e Invalidez. Elaborado por Luisdavid Colina.</p>
+                <p style="font-size:13px; color:var(--ucv-accent); margin-top:8px;">Sem. I-2026 · Sección C4 <i class="fas fa-file-pdf"></i></p>
+            </div>
+            <div class="concept-card doc-card" style="cursor:pointer;"
                  onclick="window.open('docs/Práctica 2.pdf')">
                 <span class="concept-tag">Práctica</span>
                 <h3 style="font-size:18px;">Práctica 2 — Parte I</h3>

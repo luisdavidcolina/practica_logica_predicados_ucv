@@ -311,13 +311,15 @@ html[data-theme="light"] .slide::before {
 
 /* ── Impresión / Exportación PDF ─────────────────────────────────────────────── */
 @media print {
-    @page { size: 1280px 720px; margin: 0; }
+    /* landscape sin px: evita páginas pares en blanco en Chrome/Brave Android */
+    @page { size: landscape; margin: 0; }
 
     * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
 
     body { margin: 0; padding: 0; background: #0b0f12 !important; overflow: visible !important; }
 
-    /* Ocultar chrome de navegación, botones y overlay de rotación */
+    /* Ocultar toda la UI de navegación y sus wrappers */
+    .ui-overlay,
     #nav-controls,
     #go-to-index,
     #theme-toggle,
@@ -340,16 +342,6 @@ html[data-theme="light"] .slide::before {
         display: grid !important;
     }
 
-    /* Overlay de rotación: totalmente fuera del print */
-    #rotate-overlay {
-        display: none !important;
-        visibility: hidden !important;
-        pointer-events: none !important;
-        position: static !important;
-        height: 0 !important;
-        overflow: hidden !important;
-    }
-
     /* Ocultar botón "Ver solución" */
     .reveal-solution-btn { display: none !important; }
 
@@ -357,24 +349,23 @@ html[data-theme="light"] .slide::before {
     #slides-root {
         transform: none !important;
         position: static !important;
-        width: 1280px !important;
+        width: 100% !important;
         height: auto !important;
         display: block !important;
     }
 
-    /* Cada wrapper = una página.
-       Usamos break-BEFORE en lugar de break-after para evitar la página en blanco
-       al final causada por que el indexUI (dentro de slides-root) impide que
-       :last-child coincida con el último slide-wrapper. */
+    /* Cada wrapper = una página */
     .slide-wrapper,
     .slide-wrapper[style*="display: none"],
     .slide-wrapper[style*="display:none"] {
         display: block !important;
-        width: 1280px !important;
-        height: 720px !important;
+        width: 100% !important;
+        height: auto !important;
         overflow: hidden !important;
         page-break-before: always;
         break-before: page;
+        page-break-inside: avoid;
+        break-inside: avoid;
     }
 
     /* El primer slide nunca lleva salto antes */
@@ -383,8 +374,7 @@ html[data-theme="light"] .slide::before {
         break-before: avoid;
     }
 
-    /* Cualquier elemento dentro de slides-root que no sea un wrapper
-       (p.ej. el botón de índice) queda fuera del flujo de impresión */
+    /* Cualquier elemento dentro de slides-root que no sea un wrapper */
     #slides-root > :not(.slide-wrapper) {
         display: none !important;
         height: 0 !important;
@@ -392,8 +382,9 @@ html[data-theme="light"] .slide::before {
     }
 
     .slide {
-        width: 1280px !important;
-        height: 720px !important;
+        width: 100% !important;
+        height: auto !important;
+        aspect-ratio: 16 / 9 !important;
         position: relative !important;
         transform: none !important;
         overflow: hidden !important;

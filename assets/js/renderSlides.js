@@ -256,6 +256,21 @@ if (root) {
         _setMsg('inv2-msg', sb, ok, p1&&p2, c);
     };
 
+    // Sandbox inv3 — Práctica 2 Ej.10c (U={a,b})
+    // P1: ∃x:[F(x)→G(a)] = [F(a)→G(a)] ∨ [F(b)→G(a)]
+    // P2: ∃x:G(x)→∀x:H(x) = [G(a)∨G(b)]→[H(a)∧H(b)]
+    // P3: F(a)   C: ∃x:H(x) = H(a)∨H(b)
+    window.updateSandbox_sandbox_inv3 = () => {
+        const sb = document.getElementById('sandbox_inv3'); if (!sb) return;
+        const {vars:v, ok} = _readVars(sb);
+        const p1 = _or(_imp(v.fa, v.ga), _imp(v.fb, v.ga));
+        const p2 = _imp(_or(v.ga, v.gb), _and(v.ha, v.hb));
+        const p3 = v.fa;
+        const c  = _or(v.ha, v.hb);
+        _setBox('inv3-p1',p1); _setBox('inv3-p2',p2); _setBox('inv3-p3',p3); _setBox('inv3-c',c);
+        _setMsg('inv3-msg', sb, ok, p1&&p2&&p3, c);
+    };
+
     // Scale to fit any screen
     const scaleToFit = () => {
         const w = window.innerWidth;
@@ -316,6 +331,7 @@ if (root) {
 
     // UI Navigation Arrows
     const navUI = document.createElement('div');
+    navUI.className = 'ui-overlay';
     navUI.innerHTML = `
         <div id="nav-controls" style="position: fixed; bottom: 50px; left: 50%; transform: translateX(-50%); display: flex; gap: 20px; background: rgba(11,15,18,0.9); padding: 8px 25px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.15); z-index: 1000; backdrop-filter: blur(8px); opacity: 0.15; transition: opacity 0.3s ease, transform 0.3s ease;">
             <button id="prev-slide" aria-label="Ir a la diapositiva anterior" style="background: none; border: none; color: var(--ucv-accent); font-size: 20px; cursor: pointer; transition: transform 0.2s;"><i class="fas fa-chevron-left"></i></button>
@@ -334,6 +350,7 @@ if (root) {
 
     // Index Button
     const indexUI = document.createElement('div');
+    indexUI.className = 'ui-overlay';
     indexUI.innerHTML = `
         <button id="go-to-index" aria-label="Volver al índice" style="position: fixed; bottom: 40px; left: 80px; background: rgba(11,15,18,0.8); border: 1px solid rgba(255,255,255,0.1); color: var(--text-dim); font-size: 16px; padding: 12px 20px; border-radius: 30px; cursor: pointer; display: flex; align-items: center; gap: 8px; z-index: 1000; backdrop-filter: blur(8px); opacity: 0.15; transition: all 0.2s;">
             <i class="fas fa-home"></i> Índice
@@ -369,6 +386,7 @@ if (root) {
 
     // PDF Download
     const pdfUI = document.createElement('div');
+    pdfUI.className = 'ui-overlay';
     pdfUI.innerHTML = `
         <button id="pdf-download" aria-label="Descargar PDF completo" style="position: fixed; bottom: 40px; right: 220px; background: rgba(11,15,18,0.8); border: 1px solid rgba(255,255,255,0.1); color: var(--text-dim); font-size: 16px; padding: 12px 20px; border-radius: 30px; cursor: pointer; display: flex; align-items: center; gap: 8px; z-index: 1000; backdrop-filter: blur(8px); opacity: 0.15; transition: all 0.2s;">
             <i class="fas fa-file-pdf"></i> PDF
@@ -419,6 +437,7 @@ if (root) {
 
     // Theme Toggle
     const themeUI = document.createElement('div');
+    themeUI.className = 'ui-overlay';
     themeUI.innerHTML = `
         <button id="theme-toggle" aria-label="Cambiar tema" style="position: fixed; bottom: 40px; right: 80px; background: rgba(11,15,18,0.8); border: 1px solid rgba(255,255,255,0.1); color: var(--text-dim); font-size: 16px; padding: 12px 20px; border-radius: 30px; cursor: pointer; display: flex; align-items: center; gap: 8px; z-index: 1000; backdrop-filter: blur(8px); opacity: 0.15; transition: all 0.2s;">
             <i class="fas fa-sun"></i> Tema
