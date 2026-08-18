@@ -1,8 +1,9 @@
 # Práctica Lógica de Predicados — UCV
 
 Presentación web interactiva de **Lógica de Predicados** para Matemática Discreta I.  
-Universidad Central de Venezuela · Escuela de Computación · Sem. II-2025  
-**Preparador:** Luisdavid Colina · **Profesora:** Yuliana Fernández · Sección C7
+Universidad Central de Venezuela · Escuela de Computación · Sem. I-2026 (Sección C4)  
+**Preparador:** Luisdavid Colina  
+*Origen: material creado en Sem. II-2025 (Sección C7, Profesora Yuliana Fernández) y actualizado para I-2026.*
 
 ---
 
