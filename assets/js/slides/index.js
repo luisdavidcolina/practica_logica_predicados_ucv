@@ -58,7 +58,8 @@ import {
 } from './ejercicios-resueltos.js';
 import {
     erroresSimbolizacionSlide, erroresPruebasSlide,
-    preguntasFrecSlide, curiosidadesSlide, documentosSlide
+    preguntasFrecSlide, curiosidadesSlide, documentosSlide,
+    rubricaSlide, autoevaluacionSlide
 } from './extras.js';
 
 // ─── Estructura de secciones ──────────────────────────────────────────────────
@@ -133,6 +134,7 @@ const sections = [
     {
         tag: 'Sección 5', title: 'Evaluaciones',
         slides: [
+            { html: rubricaSlide,                 id: 'slide-rubrica',               label: 'Cómo se corrige: rúbrica por componentes del método' },
             { html: ejVV2Slide,                   id: 'slide-ej-vv2',                label: 'VV — Parcial 2 ej. 2 · ∀x:[x>3→x²<3]' },
             { html: quizEj1Slide,                 id: 'slide-quiz-ej1',              label: 'Simbolización — Quiz II ej. 1' },
             { html: quizEj3AnalisisSlide,          id: 'slide-quiz-ej3-analisis',     label: 'Validez ARD — Quiz II ej. 3 · análisis' },
@@ -160,6 +162,7 @@ const sections = [
         tag: 'Sección 7', title: 'Preguntas Frecuentes',
         slides: [
             { html: preguntasFrecSlide, id: 'slide-faq', label: 'FAQ: ∀/∃, RAA/PC, FBF, var. libre, contraejemplos' },
+            { html: autoevaluacionSlide, id: 'slide-autoevaluacion', label: 'Autoevaluación: 6 preguntas con respuestas para medirte' },
         ]
     },
     {

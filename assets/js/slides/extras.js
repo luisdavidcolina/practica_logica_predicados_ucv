@@ -290,3 +290,69 @@ export const documentosSlide = String.raw`
         </div>
     </div>
 </div>`;
+
+export const rubricaSlide = String.raw`
+<div class="slide">
+    <h2 class="slide-title">Cómo se <span>corrige</span> (rúbrica)</h2>
+    <div class="content">
+        <div class="case-intro">
+            En Predicados el resultado no basta: se evalúa el <strong>método</strong>. Así se reparte una pregunta típica de validez (4–5 pts).
+        </div>
+        <table>
+            <thead><tr><th>Criterio</th><th>Excelente</th><th>Insuficiente</th><th>Peso</th></tr></thead>
+            <tbody>
+                <tr><td><strong>Diccionario y universo</strong></td><td>Declara $\mathbb{U}$ y cada predicado con su aridad</td><td>Usa $P(x)$ sin decir qué significa ni sobre qué universo</td><td>0.5</td></tr>
+                <tr><td><strong>Simbolización</strong></td><td>$\forall$ con $\to$, $\exists$ con $\wedge$; alcance y paréntesis correctos</td><td>$\forall x:[P(x)\wedge Q(x)]$ o $\exists x:[P(x)\to Q(x)]$</td><td>1.0</td></tr>
+                <tr><td><strong>Justificación por línea</strong></td><td>Regla exacta y líneas: "PU 2", "MP 3,5", "PE 1"</td><td>Pasos sin razón</td><td><strong>1.5</strong></td></tr>
+                <tr><td><strong>Orden PE antes que PU</strong></td><td>Instancia primero los $\exists$ (constante nueva) y luego los $\forall$</td><td>Reutiliza una constante ya usada o invierte el orden</td><td>1.0</td></tr>
+                <tr><td><strong>Cierre</strong></td><td>GU/GE bien aplicadas; descarga de PC/RAA</td><td>Generaliza sobre una constante que vino de PE</td><td>1.0</td></tr>
+            </tbody>
+        </table>
+        <div class="note-bar">
+            <strong>Estrategia:</strong> aunque no cierres la derivación, escribe el diccionario, la simbolización y la estrategia elegida. Esa parte se corrige aparte y salva puntos. Y recuerda: <strong>nunca</strong> apliques GU a una constante introducida por PE.
+        </div>
+    </div>
+</div>`;
+
+export const autoevaluacionSlide = String.raw`
+<div class="slide">
+    <h2 class="slide-title">Autoevaluación: <span>¿estás listo?</span></h2>
+    <div class="content">
+        <div class="case-intro">Responde sin mirar; las respuestas están abajo.</div>
+        <div class="concept-grid">
+            <div class="concept-card">
+                <span class="concept-tag">1</span>
+                <h3>Conectiva por cuantificador</h3>
+                <p>"Todo estudiante aprueba": ¿$\forall x:[E(x)\wedge A(x)]$ o $\forall x:[E(x)\to A(x)]$? ¿Por qué la otra es falsa?</p>
+            </div>
+            <div class="concept-card">
+                <span class="concept-tag">2</span>
+                <h3>Negación</h3>
+                <p>Niega y mete la negación hasta el átomo: $\neg\,\forall x\,\exists y:[P(x,y)\to Q(y)]$.</p>
+            </div>
+            <div class="concept-card">
+                <span class="concept-tag">3</span>
+                <h3>Orden de instanciación</h3>
+                <p>Tienes $\forall x: P(x)$ y $\exists x: Q(x)$. ¿Cuál instancias primero y con qué constante?</p>
+            </div>
+            <div class="concept-card">
+                <span class="concept-tag">4</span>
+                <h3>Invalidez</h3>
+                <p>¿Qué debes exhibir para probar que un argumento cuantificado es inválido?</p>
+            </div>
+            <div class="concept-card">
+                <span class="concept-tag">5</span>
+                <h3>Alcance</h3>
+                <p>¿Son equivalentes $\forall x\,\exists y: A(x,y)$ y $\exists y\,\forall x: A(x,y)$?</p>
+            </div>
+            <div class="concept-card">
+                <span class="concept-tag">6</span>
+                <h3>Variable libre</h3>
+                <p>En $\forall x:[P(x)\to Q(y)]$, ¿qué variable es libre y por qué eso importa?</p>
+            </div>
+        </div>
+        <div class="note-bar">
+            <strong>Respuestas:</strong> 1) con $\to$; con $\wedge$ afirmaría que <em>todo</em> objeto del universo es estudiante. — 2) $\exists x\,\forall y:[P(x,y)\wedge\neg Q(y)]$. — 3) primero $\exists$ (PE) con una constante <strong>nueva</strong>; luego PU sobre esa misma constante. — 4) un universo concreto y una interpretación de los predicados que hagan todas las premisas verdaderas y la conclusión falsa. — 5) No: $\exists y\,\forall x$ es más fuerte (un mismo $y$ sirve para todos). — 6) $y$ es libre; la fórmula no es una proposición hasta asignarle valor, y no se puede generalizar sobre ella.
+        </div>
+    </div>
+</div>`;
